@@ -1,0 +1,2495 @@
+:root {
+    --bg-dark: #121212; /* Near black for deep dark theme */
+    --bg-surface: #1e1e1e; /* Slightly lighter for cards/surfaces */
+    --text-light: #e0e0e0; /* Light gray for primary text */
+    --text-secondary: #b0b0b0; /* Softer gray for secondary text */
+
+    /* New Yellow Accent Scheme */
+    --accent-primary: #ffdd03; /* Main yellow */
+    --accent-primary-darker: #e6c300; /* Darker yellow for hover on yellow elements */
+    --accent-primary-text-hover: #fff2a0; /* Lighter yellow for text hover, optional */
+    --text-on-accent: #1a1a1a; /* Dark text for on yellow backgrounds */
+
+    --border-color: #333333; /* Subtle borders */
+    --shadow-color: rgba(0, 0, 0, 0.4); /* Slightly darker shadow for more depth */
+    --highlight-shadow-color: rgba(255, 255, 255, 0.08);
+    --section-padding: 4rem 1rem; /* Standardized padding */
+
+    /* Font Weights */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+}
+
+/* Animation Keyframes */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === Checkbox Filter Styling (Subtask 25) === */
+
+.filter-group-title { /* Title for a group of checkboxes, e.g., "Caractéristiques:" */
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 0.75rem; /* More space before the first checkbox option */
+    display: block; /* Ensure it takes its own line if not already */
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Increased gap for better touch target */
+    margin-bottom: 0.6rem; /* Space between checkbox options */
+}
+.checkbox-option:last-child {
+    margin-bottom: 0;
+}
+
+/* Hide the default checkbox */
+.checkbox-option input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px; /* Ensure it's completely out of flow and sight */
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Style the label to act as the custom checkbox container */
+.checkbox-option label {
+    position: relative;
+    padding-left: 30px; /* Increased space for a slightly larger custom checkbox */
+    cursor: pointer;
+    font-size: 0.95rem; /* Consistent with other filter text */
+    color: var(--text-secondary);
+    line-height: 1.4;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 20px; /* Ensure consistent height for tap target */
+}
+
+/* Custom checkbox box ::before the label text */
+.checkbox-option label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; /* Size of the custom checkbox */
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-small, 4px);
+    background-color: var(--bg-dark); /* Slightly different from main surface for depth */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Custom checkmark ::after the box (hidden by default) */
+.checkbox-option label::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    /* Adjusted transform for better centering of a typical checkmark */
+    transform: translateY(-60%) rotate(45deg) scale(0);
+    width: 6px;
+    height: 12px;
+    border: solid var(--text-on-accent);
+    border-width: 0 2.5px 2.5px 0; /* Slightly thicker checkmark */
+    transition: transform 0.2s ease;
+}
+
+/* Styles when checkbox is checked */
+.checkbox-option input[type="checkbox"]:checked + label::before {
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary-darker); /* Darker border for checked state */
+}
+.checkbox-option input[type="checkbox"]:checked + label::after {
+    transform: translateY(-60%) rotate(45deg) scale(1); /* Show checkmark */
+}
+
+/* Focus styles for accessibility */
+.checkbox-option input[type="checkbox"]:focus-visible + label::before { /* Use :focus-visible */
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px rgba(255, 221, 3, 0.3);
+}
+
+/* Hover styles for the label (visual feedback) */
+.checkbox-option label:hover::before {
+   border-color: var(--accent-primary);
+}
+
+/* === Filter UI Enhancements - Overrides and Additions (Subtask 24) === */
+
+/* Ensure .product-filters-container keeps its glassmorphism but no text-align center */
+.product-filters-container {
+    /* background-color, backdrop-filter, border, padding, border-radius, margin-bottom, box-shadow should be as set in Subtask 23 */
+    /* text-align: initial; /* Explicitly remove center alignment if it was inherited or set */
+}
+
+#product-filters-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem 2rem;
+    align-items: start; /* Primary change: align to start */
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    /* min-width: 200px; /* Safeguard, but grid minmax is primary */
+}
+
+#product-filters-form label { /* General label styling within the form */
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.1rem;
+    font-weight: var(--font-weight-medium);
+}
+
+/* Tire Size Group - Ensuring specific internal layout */
+.filter-group.tire-size-group {
+    /* display: flex; /* Already a flex item from .filter-group if this is nested, but it's a grid item itself */
+    /* flex-direction: column; /* Label above row of inputs */
+    /* gap: 0.5rem; /* Gap between main label and row */
+    /* Optional visual grouping styles from prompt can be added here if desired */
+    /* border: 1px solid var(--border-color); */
+    /* padding: 1rem; */
+    /* border-radius: var(--border-radius-medium); */
+}
+
+.filter-group.tire-size-group > label { /* Style for the "Dimensions du Pneu:" label */
+    /* font-weight: var(--font-weight-semibold); /* Already handled by general label style if specific enough */
+    /* color: var(--text-light); */
+    /* margin-bottom: 0.5rem; */
+}
+
+.tire-size-group .tire-size-inputs-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+
+.tire-size-group .tire-size-inputs-row .filter-group { /* Sub-groups for width/ratio/diameter */
+     flex-grow: 1;
+     min-width: 80px;
+     /* Reset sub-group specific styling from main .filter-group if any conflicts */
+     padding: 0; border: none; background: none; box-shadow: none;
+}
+
+/* Select element styling (ensure it's not overridden) */
+#product-filters-form select {
+    /* background-color, color, border, padding, border-radius, font-size, min-width, appearance, background-image etc. should be as set in Subtask 23 */
+}
+#product-filters-form select:focus {
+    /* outline, border-color, box-shadow should be as set in Subtask 23 */
+}
+.filter-group.tire-size-group select { /* Specific for tire size selects */
+    min-width: 80px; /* Already defined, ensuring it stays */
+    flex-grow: 1; /* Allow them to take space */
+}
+
+
+/* Filter Actions */
+.filter-actions {
+    grid-column: 1 / -1; /* Span full width */
+    text-align: right;
+    margin-top: 1rem; /* Add space if it's on a new line */
+    align-self: flex-end; /* Ensure it aligns to bottom of grid row if others are taller */
+}
+
+/* Reset Button - ensuring .secondary class is effective or use ID for specificity */
+#reset-filters-button.cta-button.secondary, /* If .secondary is the primary way */
+#reset-filters-button.cta-button { /* Fallback if .secondary isn't strong enough or not used */
+    background-color: var(--bg-surface-accent, #3a3a3a); /* Define --bg-surface-accent or use fallback */
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    padding: 0.7rem 1.2rem; /* Consistent padding */
+    font-size: 0.95rem;
+    text-shadow: none; /* Remove any inherited text shadow from primary CTA */
+}
+#reset-filters-button.cta-button.secondary:hover,
+#reset-filters-button.cta-button:hover {
+    background-color: var(--border-color);
+    color: var(--text-light);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(255, 221, 3, 0.2);
+}
+
+/* Responsive for Filters (refinements based on Subtask 24 prompt) */
+@media (max-width: 992px) { /* Tablet */
+    .tire-size-group .tire-size-inputs-row .filter-group {
+        min-width: 70px; /* As per subtask 23 */
+    }
+}
+
+@media (max-width: 576px) { /* Small mobile */
+    #product-filters-form {
+        /* grid-template-columns: 1fr; /* Already set */
+        /* gap: 1rem; /* Already set */
+    }
+    .tire-size-group .tire-size-inputs-row {
+        flex-direction: column;
+        gap: 1rem; /* Increased from 0.5rem for stacked selects */
+        align-items: stretch;
+    }
+    .tire-size-group .tire-size-inputs-row .filter-group {
+        min-width: 100%;
+    }
+    .filter-actions {
+        text-align: center;
+    }
+    #reset-filters-button.cta-button.secondary, /* Ensure full width for mobile */
+    #reset-filters-button.cta-button {
+        width: 100%;
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+    }
+}
+
+/* === Product Filter UI Enhancements (Subtask 24) === */
+
+/* Refined Filter Form Styling */
+#product-filters-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem 2rem; /* row-gap column-gap */
+    align-items: start; /* Changed from flex-end to start */
+}
+
+/* Ensure .filter-group itself doesn't have conflicting width/max-width */
+.filter-group {
+    /* display: flex; flex-direction: column; gap: 0.4rem; /* Already styled */
+    /* min-width: 200px; /* Generally handled by grid's minmax, but can be a safeguard */
+}
+
+/* Refined .tire-size-group and its internal row for better responsiveness */
+.filter-group.tire-size-group {
+    /* display: flex; flex-direction: column; gap: 0.5rem; /* From previous subtask, ensure label is above row */
+    /* Optional: Border/padding for visual grouping can be kept or removed based on overall look */
+    /* border: 1px solid var(--border-color); */
+    /* padding: 1rem; */
+    /* border-radius: var(--border-radius-medium); */
+}
+
+.tire-size-group .tire-size-inputs-row {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller viewports before full stacking */
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+
+.tire-size-group .tire-size-inputs-row .filter-group {
+     flex-grow: 1;
+     min-width: 80px; /* Min width for individual size inputs */
+}
+
+/* General Label and Select Styling (already defined, ensure they are not overridden by mistake) */
+/* #product-filters-form label { ... } */
+/* #product-filters-form select { ... } */
+
+/* Filter Actions positioning */
+.filter-actions {
+    grid-column: 1 / -1; /* Span full width of the grid */
+    text-align: right;
+    margin-top: 1rem; /* Add some space if it's on a new line */
+    /* If it should always be at the end of the last "natural" row: */
+    /* justify-self: end; align-self: end; grid-column: auto; */
+}
+
+/* Responsive adjustments for filter elements */
+@media (max-width: 992px) { /* Tablet - ensure tire size inputs might wrap but stay in a row if possible */
+    .filter-group.tire-size-group {
+        /* Potentially make it span full width if other filters are also full width */
+        /* grid-column: 1 / -1; */
+    }
+    .tire-size-group .tire-size-inputs-row {
+        /* flex-wrap: wrap; /* Already set, good for allowing wrapping */
+    }
+     .tire-size-group .tire-size-inputs-row .filter-group {
+        min-width: 70px; /* Slightly smaller min-width for tablet */
+    }
+}
+
+
+@media (max-width: 576px) { /* Small mobile - stack tire size inputs */
+    #product-filters-form {
+        /* gap: 1rem; /* Already set in previous responsive block */
+    }
+    .filter-group.tire-size-group {
+        /* padding: 0; border: none; background: none; /* Already set */
+    }
+    .tire-size-group .tire-size-inputs-row {
+        flex-direction: column;
+        gap: 1rem; /* Adjust gap for stacked selects */
+        align-items: stretch;
+    }
+    .tire-size-group .tire-size-inputs-row .filter-group {
+        min-width: 100%;
+    }
+    .filter-actions {
+        text-align: center;
+        /* margin-top: 0.5rem; /* Already set */
+    }
+    /* #reset-filters-button (and its classes) already has width:100% from previous block */
+}
+
+/* Utility class for hiding products via JS */
+.product-hidden {
+    display: none !important;
+}
+
+/* === Styling for produits.html specific elements === */
+
+/* Product Filters Container (Previously .product-filters-placeholder) */
+.product-filters-container {
+    background-color: rgba(40, 40, 40, 0.75);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12); /* Slightly more visible border */
+    padding: 2.5rem; /* Increased padding */
+    border-radius: 15px; /* Use var or consistent value like var(--border-radius-large, 15px) */
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Refined shadow */
+    /* text-align: center; /* Removed as form elements will align themselves */
+}
+
+/* Remove old placeholder p styling if it was too specific or add general one */
+.product-filters-container p { /* For the placeholder text if still used */
+    margin: 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Filter Form Styling */
+#product-filters-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid columns */
+    gap: 1.5rem 2rem; /* Row gap, Column gap */
+    align-items: start; /* Changed from flex-end to prevent vertical shifts */
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem; /* Smaller gap for label & select */
+}
+
+/* Special styling for the tire size group container */
+.filter-group.tire-size-group {
+    /* This group itself is a grid item in the main form */
+    /* Optional: Add border/bg to visually group these further, if not done by sub-groups */
+    /* border: 1px solid var(--border-color); */
+    /* padding: 1rem; */
+    /* border-radius: var(--border-radius-medium); */
+    /* background-color: rgba(0,0,0,0.03); */
+    /* The label "Dimensions du Pneu:" is part of this flex column */
+}
+
+.tire-size-group > label { /* Label for "Dimensions du Pneu" */
+    font-weight: var(--font-weight-semibold); /* Make it more prominent */
+    color: var(--text-light);
+    margin-bottom: 0.5rem; /* Space before the row of inputs */
+}
+
+.tire-size-group .tire-size-inputs-row {
+    display: flex;
+    flex-wrap: nowrap; /* Try to keep them in a row */
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+
+.tire-size-group .tire-size-inputs-row .filter-group {
+     flex-grow: 1;
+     min-width: 70px; /* Narrower for size components */
+}
+
+/* General Label and Select Styling within the form */
+#product-filters-form label {
+    font-size: 0.85rem; /* Slightly smaller label */
+    color: var(--text-secondary);
+    margin-bottom: 0;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+}
+
+#product-filters-form select {
+    background-color: var(--bg-dark); /* Consistent dark background */
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    padding: 0.7rem 1rem; /* Increased padding for better touch targets */
+    border-radius: var(--border-radius-small, 5px);
+    font-size: 1rem; /* Standard font size for readability */
+    min-width: 160px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23e0e0e0' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center; /* Adjusted position */
+    background-size: 0.9em; /* Adjusted size */
+    cursor: pointer;
+}
+#product-filters-form select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(255, 221, 3, 0.3); /* Adjusted glow */
+}
+
+.filter-actions {
+    grid-column: 1 / -1; /* Span full width */
+    text-align: right;
+    margin-top: 1rem;
+}
+
+#reset-filters-button.cta-button.secondary { /* Assuming .secondary modifies .cta-button */
+    background-color: var(--bg-surface); /* Different bg for secondary */
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    padding: 0.7rem 1.5rem; /* Match select height */
+    font-size: 1rem; /* Match select font size */
+}
+#reset-filters-button.cta-button.secondary:hover {
+    background-color: var(--border-color); /* Darken on hover */
+    color: var(--text-light);
+}
+
+
+/* Responsive for Filters */
+@media (max-width: 767px) { /* Tablet and smaller */
+    #product-filters-form {
+        gap: 1.25rem;
+    }
+    .filter-group.tire-size-group {
+        /* If it needs to span full width on tablet before stacking internally */
+        /* grid-column: 1 / -1; */
+    }
+    .tire-size-group .tire-size-inputs-row {
+        flex-wrap: wrap; /* Allow select boxes to wrap if needed */
+    }
+    .tire-size-group .tire-size-inputs-row .filter-group {
+        min-width: calc(33.333% - 0.75rem); /* Aim for 3 per row on tablet if space */
+    }
+}
+
+@media (max-width: 576px) { /* Small mobile */
+    .product-filters-container {
+        padding: 1.5rem; /* Reduce padding on small screens */
+    }
+    #product-filters-form {
+        grid-template-columns: 1fr; /* Stack all groups */
+        gap: 1rem;
+    }
+    .filter-group.tire-size-group {
+        padding: 0; /* Remove padding if any was added for grouping border */
+        border: none;
+        background: none;
+    }
+    .tire-size-group .tire-size-inputs-row {
+        flex-direction: column;
+        gap: 1rem; /* Increased gap for stacked selects */
+        align-items: stretch;
+    }
+    .tire-size-group .tire-size-inputs-row .filter-group {
+        min-width: 100%;
+    }
+    #product-filters-form select { /* Make all selects full width when stacked */
+        min-width: 100%;
+    }
+    .filter-actions {
+        text-align: center;
+        margin-top: 0.5rem; /* Reduce top margin */
+    }
+    #reset-filters-button.cta-button.secondary {
+        width: 100%;
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+    }
+}
+
+
+/* Optional: If product page title needs specific adjustments */
+.all-products-section .section-title {
+    margin-top: 1rem; /* Example: Adjust top margin if header is tall */
+    margin-bottom: 2.5rem; /* Example: Space before filters */
+    /* font-size: 2.8rem; /* Optional: Slightly larger page title */
+}
+
+/* Ensuring product image placeholder within cards on produits.html is consistent */
+/* This rule should already exist or be similar if using common .product-card structure */
+.product-card .product-image-placeholder {
+    width: 100%;
+    /* height: 200px; /* Or aspect-ratio if preferred */
+    background-color: var(--bg-dark); /* Darker placeholder for images */
+    border-radius: var(--border-radius-small); /* Or consistent with image actual radius */
+    margin-bottom: 1rem;
+    overflow: hidden; /* To ensure img fits into rounded corners */
+}
+.product-card .product-image-placeholder img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* === Section CTA Container === */
+.section-cta-container {
+    text-align: center;
+    margin-top: 2.5rem; /* Space above the button */
+    margin-bottom: 1rem; /* Optional: space below if sections are close */
+}
+
+/* === Sticky Bottom Navigation (Mobile) === */
+.mobile-bottom-nav {
+    display: none; /* Hidden by default on desktop */
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-bottom: 60px; /* Match .mobile-bottom-nav height */
+        /* Ensure this doesn't conflict if there's already padding-bottom from other elements */
+    }
+
+    .mobile-bottom-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background-color: var(--bg-surface);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.35); /* Slightly stronger shadow */
+        z-index: 1000;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .mobile-nav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.75rem; /* Slightly increased for readability */
+        padding: 0.3rem 0.1rem; /* Adjusted padding */
+        border: none;
+        background: none;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .mobile-nav-link i {
+        font-size: 1.2rem; /* Adjusted icon size */
+        margin-bottom: 0.25rem; /* Adjusted margin */
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active { /* JS will need to handle .active class for current page/section */
+        color: var(--accent-primary);
+    }
+
+    /* Hamburger styling within bottom nav */
+    .mobile-bottom-nav .hamburger-button {
+        display: flex; /* Ensure it's flex if mobile-nav-link is also flex */
+        padding: 0;
+        /* color is inherited from .mobile-nav-link, or set explicitly */
+    }
+    .mobile-bottom-nav .hamburger-button .hamburger-box {
+        width: 24px;
+        height: 20px;
+        /* margin-bottom: 0.25rem; /* To align with icon spacing if text is below */
+    }
+    .mobile-bottom-nav .hamburger-button .hamburger-inner,
+    .mobile-bottom-nav .hamburger-button .hamburger-inner::before,
+    .mobile-bottom-nav .hamburger-button .hamburger-inner::after {
+        background-color: var(--text-secondary);
+    }
+    .mobile-bottom-nav .hamburger-button.is-active .hamburger-inner,
+    .mobile-bottom-nav .hamburger-button.is-active .hamburger-inner::before,
+    .mobile-bottom-nav .hamburger-button.is-active .hamburger-inner::after {
+        background-color: var(--accent-primary);
+    }
+}
+
+/* Reset body padding on larger screens if it was added for mobile */
+@media (min-width: 768px) {
+     body {
+         padding-bottom: 0;
+     }
+}
+
+/* === Typography, Spacing, and Card Enhancements === */
+
+body {
+    font-size: 1.05rem; /* Slightly larger base body text if html font-size is 16px */
+    line-height: 1.75; /* Increased line height for body text */
+}
+
+/* Specific line height for testimonial quotes if needed for more readability */
+.testimonial-slide .testimonial-quote {
+    line-height: 1.75; /* Example, adjust as needed */
+    /* font-size: 1.1rem; /* Optional: if quotes need to be larger */
+}
+
+/* Card Enhancements */
+.product-card,
+#testimonial-carousel.js-simplified-carousel-active .testimonial-slide, /* Target active mobile slide */
+.testimonial-slide { /* Target desktop slides too */
+    padding: 2rem; /* Increased padding */
+}
+
+.product-card {
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+                box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+                outline-color 0.35s ease; /* Added outline-color to transition */
+    position: relative;
+    outline: 3px solid transparent; /* Placeholder for glow effect, increased thickness */
+    outline-offset: -3px; /* Offset to keep it within card bounds or slightly inside */
+}
+
+.product-card:hover, .product-card:focus-within {
+    transform: translateY(-10px) scale(1.03); /* Slightly more lift and scale */
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3),
+                0 8px 15px rgba(0,0,0,0.22); /* Deeper main shadow & Softer secondary */
+    outline-color: rgba(255, 221, 3, 0.7); /* Yellow glow, with some transparency */
+}
+
+/* Section Title Accent Border - Appended to ensure it applies */
+.section-title {
+    position: relative;
+    padding-bottom: 0.85rem; /* Adjusted padding for slightly more space */
+    margin-bottom: 3rem; /* Ensure enough space after title + border */
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px; /* Slightly wider */
+    height: 4px; /* Slightly thicker */
+    background-color: var(--accent-primary);
+    border-radius: 2px;
+}
+
+/* Responsive adjustments for section title border if needed */
+@media (max-width: 767px) {
+    .section-title {
+        padding-bottom: 0.6rem;
+        margin-bottom: 2.5rem;
+    }
+    .section-title::after {
+        width: 50px;
+        height: 3px;
+    }
+}
+
+/* === Overhauled Hero Section CSS === */
+.hero-section {
+    /* section-padding class provides vertical padding, or set explicitly */
+    /* padding-top: 8rem;  Adjust if section-padding is not used or needs override */
+    /* padding-bottom: 8rem; Adjust if section-padding is not used or needs override */
+    min-height: 75vh;
+    position: relative;
+    background-image: url('https://via.placeholder.com/1920x700.png?text=Performance+Driving+Background');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* Parallax-like effect */
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.55); /* Slightly increased opacity */
+    z-index: 1;
+}
+
+.hero-section .container { /* Ensure container within hero is also positioned correctly */
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content {
+    /* position: relative; Already handled by .container if that's z-indexed */
+    /* z-index: 2; */
+    max-width: 850px; /* Increased max-width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-title {
+    font-size: 3.8rem; /* Increased font size */
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 1.5rem;
+    line-height: 1.25; /* Adjusted line height */
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6); /* Enhanced shadow */
+    color: #ffffff; /* Explicitly white, overriding .section-title color if it was yellow */
+}
+
+.hero-subtitle {
+    font-size: 1.35rem; /* Increased font size */
+    margin-bottom: 2.5rem;
+    line-height: 1.75; /* Adjusted line height */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6); /* Enhanced shadow */
+    color: var(--text-light); /* Use light gray for subtitle for subtle contrast */
+}
+
+.hero-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Increased gap */
+    flex-wrap: wrap;
+}
+
+.cta-button.hero-cta-primary {
+    /* background-color: var(--accent-primary); /* From .cta-button */
+    /* color: var(--text-on-accent); /* From .cta-button */
+    padding: 1rem 2.5rem; /* Larger padding */
+    font-size: 1.15rem; /* Slightly larger font */
+    /* text-transform: uppercase; /* From .cta-button */
+}
+
+.cta-button.hero-cta-secondary {
+    background-color: transparent;
+    border: 2px solid var(--accent-primary);
+    color: var(--accent-primary);
+    padding: 1rem 2.5rem;
+    font-size: 1.15rem;
+    /* text-transform: uppercase; /* From .cta-button */
+}
+.cta-button.hero-cta-secondary:hover,
+.cta-button.hero-cta-secondary:focus {
+    background-color: var(--accent-primary);
+    color: var(--text-on-accent);
+    border-color: var(--accent-primary); /* Ensure border stays consistent or changes with bg */
+}
+
+/* Responsive Hero Section */
+@media (max-width: 992px) {
+    .hero-section {
+        min-height: 65vh;
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+    .hero-title {
+        font-size: 3rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-section {
+        min-height: auto; /* Let content define height more on mobile */
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        background-attachment: scroll; /* Disable parallax on mobile for performance/rendering */
+    }
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    .hero-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem; /* Adjust gap for stacked buttons */
+    }
+    .cta-button.hero-cta-primary,
+    .cta-button.hero-cta-secondary {
+        width: 100%;
+        max-width: 320px; /* Max width for stacked buttons */
+        padding: 0.8rem 1.5rem; /* Adjust padding for mobile buttons */
+        font-size: 1rem;
+    }
+}
+
+/* === Updated "How it Works" (Comment Ça Marche) Section CSS for 3 steps === */
+.step {
+    /* Original styles:
+    flex-basis: calc(45% - 1.5rem);
+    min-width: 280px;
+    max-width: 420px;
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--bg-dark);
+    border-radius: 10px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    */
+    flex-basis: calc(30% - 2rem); /* Adjusted for 3 items with a 3rem gap: (100%/3) - (gap*2/3) = 33.33% - 2rem */
+    /* Or a simpler percentage that allows space with space-evenly: */
+    /* flex-basis: 30%; */
+    /* min-width and max-width can remain, or be adjusted if needed */
+}
+
+/* Responsive adjustments for .step if the default tablet wrapping (2 then 1) is not desired */
+/* For now, we will rely on the existing tablet media query:
+@media (max-width: 992px) {
+    .step {
+        flex-basis: calc(48% - 1rem); // This will cause 2 on first line, 1 on second for 3 items
+        min-width: 220px;
+        max-width: 350px;
+    }
+}
+If stacking to single column on tablet is preferred, that media query would be:
+@media (max-width: 992px) {
+    .steps-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .step {
+        flex-basis: 100%;
+        max-width: 450px;
+    }
+}
+*/
+/* The existing mobile query (@media (max-width: 767px)) already stacks them fully. */
+
+
+/* === About Us Section CSS === */
+.about-us-section {
+    background-color: var(--bg-dark); /* Or var(--bg-surface) to alternate */
+}
+
+.about-us-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.about-us-text {
+    flex: 1;
+    /* max-width: 60%; /* Optional: to give more space to image or vice-versa */
+}
+
+.about-us-text p {
+    margin-bottom: 1.5rem; /* More spacing between paragraphs */
+    line-height: 1.7; /* Slightly more line height for readability */
+}
+.about-us-text p:last-child {
+    margin-bottom: 0;
+}
+
+.about-us-image-container {
+    flex: 1;
+    /* max-width: 40%; */
+    text-align: center; /* Center image if it's smaller than container */
+}
+
+.about-us-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Consistent with other cards */
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+/* Responsive for About Us Section */
+@media (max-width: 992px) {
+    .about-us-content {
+        flex-direction: column;
+        gap: 2.5rem; /* Adjust gap for stacked layout */
+    }
+    .about-us-text,
+    .about-us-image-container {
+        flex-basis: 100%; /* Take full width when stacked */
+        max-width: 100%;
+        text-align: left; /* Align text to left when stacked */
+    }
+    .about-us-image-container {
+        margin-top: 1rem;
+        text-align: center; /* Center image when stacked */
+    }
+    .about-us-image-container img {
+        max-width: 80%; /* Control image size on tablet */
+        margin: 0 auto; /* Center image */
+    }
+}
+
+@media (max-width: 767px) {
+    .about-us-text {
+        text-align: justify; /* Justify text for smaller screens */
+    }
+    .about-us-image-container img {
+        max-width: 100%; /* Allow image to be full width on mobile */
+    }
+     .about-us-section .section-title { /* Ensure title is not too large on mobile */
+        font-size: 2rem;
+    }
+    .about-us-content {
+        gap: 2rem;
+    }
+}
+
+@keyframes subtleBounce { /* Example, can be used for icons or small elements */
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+/* Basic Reset */
+body, h1, h2, h3, h4, h5, h6, p, ul, li, img, section, header, footer, nav, div, form, input, button, a, span, strong, em {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Primary font */
+    border: none; /* Remove default borders from form elements */
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size for rem units */
+}
+
+body {
+    line-height: 1.6; /* Adjusted for Poppins */
+    color: var(--text-light);
+    background-color: var(--bg-dark);
+    font-weight: var(--font-weight-regular); /* Default body font weight */
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
+}
+
+.container {
+    width: 90%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* General Section Styling */
+.section-padding {
+    padding: var(--section-padding);
+    /* Base animation for sections - can be overridden by more specific selectors if needed */
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    opacity: 0; /* Start hidden */
+}
+
+/* Staggered animation for sections - apply by ID */
+#how-it-works { animation-delay: 0.15s; }
+#best-sellers { animation-delay: 0.25s; }
+#trusted-brands { animation-delay: 0.15s; }
+#new-arrivals { animation-delay: 0.25s; }
+#promotions { animation-delay: 0.15s; }
+#testimonials { animation-delay: 0.25s; }
+#newsletter-signup { animation-delay: 0.15s; }
+
+
+.section-title { /* Also used for h2 */
+    text-align: center;
+    font-size: 2.5rem; /* Increased size */
+    font-weight: var(--font-weight-semibold);
+    color: var(--accent-primary);
+    margin-bottom: 2.5rem; /* Consistent spacing */
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Added letter spacing */
+}
+
+/* Typographic Hierarchy */
+h1 {
+    font-size: 3.2rem; /* Adjusted */
+    font-weight: var(--font-weight-bold);
+    color: var(--text-light); /* Main H1s are usually white on dark overlay/bg */
+    margin-bottom: 1.5rem;
+    line-height: 1.2; /* Tighter line height for large headings */
+}
+
+h2 { /* For section titles, use .section-title for consistency if preferred */
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-light);
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: 1.75rem; /* Adjusted */
+    font-weight: var(--font-weight-medium);
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+h4 {
+    font-size: 1.25rem; /* Adjusted */
+    font-weight: var(--font-weight-medium);
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+p, li, span, label { /* General paragraph and list item styling */
+    font-size: 1rem;
+    color: var(--text-secondary); /* Softer color for body text */
+    margin-bottom: 1rem; /* Default spacing for paragraphs */
+}
+ul, ol {
+    list-style-position: inside; /* Or outside, depending on preference */
+    padding-left: 1.25rem; /* Indentation for lists */
+}
+li {
+    margin-bottom: 0.5rem; /* Spacing between list items */
+}
+
+
+/* Links */
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium); /* Make links slightly bolder */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+a:hover, a:focus { /* Added :focus for accessibility */
+    color: var(--accent-primary-darker);
+    /* text-decoration: underline; Optional: add underline on hover for specific links */
+}
+
+/* CTA Button General Styling */
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-primary);
+    color: var(--text-on-accent) !important; /* Ensure text is dark for contrast */
+    padding: 0.8rem 1.8rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: var(--font-weight-semibold); /* Bolder button text */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--accent-primary);
+    text-align: center;
+    text-transform: uppercase; /* Uppercase for CTAs */
+    letter-spacing: 0.5px;
+}
+
+.cta-button:hover, .cta-button:focus { /* Added :focus for accessibility */
+    background-color: var(--accent-primary-darker);
+    color: var(--text-on-accent) !important;
+    transform: translateY(-3px); /* Slightly more lift */
+    box-shadow: 0 6px 12px var(--shadow-color); /* Enhanced shadow */
+}
+
+/* Header */
+#main-header {
+    background-color: var(--bg-surface);
+    /* Animation applied directly as it's always visible */
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+    opacity: 0;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 3px 8px var(--shadow-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+#main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#main-header .logo img {
+    max-width: 160px;
+    filter: invert(1) brightness(1.8) contrast(1.1);
+}
+
+#main-header .main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+#main-header .main-nav ul li {
+    margin-left: 25px;
+}
+
+#main-header .main-nav ul li a {
+    color: var(--text-light);
+    font-weight: var(--font-weight-medium); /* Updated weight */
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+#main-header .main-nav ul li a:hover,
+#main-header .main-nav ul li a.active {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+}
+
+#main-header .header-actions {
+    display: flex;
+    align-items: center;
+}
+
+#main-header .search-bar {
+    display: flex;
+    margin-right: 1.5rem;
+}
+
+#main-header .search-bar input[type="search"] {
+    padding: 0.6rem 0.8rem;
+    border-radius: 5px 0 0 5px;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    min-width: 200px;
+    font-weight: var(--font-weight-regular);
+}
+
+#main-header .search-bar input[type="search"]::placeholder {
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-regular);
+}
+
+#main-header .search-bar button {
+    padding: 0.6rem 0.8rem;
+    background-color: var(--accent-primary);
+    color: var(--text-on-accent); /* Use new variable */
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: var(--font-weight-semibold); /* Button icon weight */
+}
+
+#main-header .search-bar button:hover {
+    background-color: var(--accent-primary-darker);
+}
+
+#main-header .cart-icon a {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    position: relative;
+}
+
+#main-header .cart-icon a span {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: var(--accent-primary);
+    color: var(--text-on-accent); /* Use new variable */
+    border-radius: 50%;
+    font-size: 0.7rem; /* Use rem */
+    padding: 0.2rem 0.45rem;
+    font-weight: var(--font-weight-bold);
+}
+
+/* Hero Section */
+.hero-section {
+    height: 85vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('../images/hero-bg-placeholder.jpg') no-repeat center center/cover;
+    background-color: var(--bg-dark);
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.hero-section .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section .hero-content h1 {
+    font-size: 3.8rem; /* Adjusted for Poppins */
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px var(--shadow-color);
+    font-weight: var(--font-weight-bold);
+}
+
+.hero-section .hero-content p {
+    font-size: 1.25rem; /* Adjusted */
+    color: var(--text-light); /* Brighter for hero subtitle */
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: var(--font-weight-regular);
+}
+
+.hero-section .hero-cta {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem; /* rem unit */
+    font-weight: var(--font-weight-semibold);
+}
+
+/* How It Works Section */
+.how-it-works-section {
+    background-color: var(--bg-surface);
+}
+
+.steps-container {
+    display: flex;
+    justify-content: space-evenly; /* Better for 2 items */
+    align-items: flex-start; /* Align items to the top */
+    flex-wrap: wrap;
+    gap: 3rem; /* Increased gap slightly for more separation */
+}
+
+.step {
+    flex-basis: calc(45% - 1.5rem); /* Adjusted for 2 items with 3rem gap */
+    min-width: 280px; /* Slightly larger min-width */
+    max-width: 420px;
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--bg-dark);
+    border-radius: 10px;
+    box-shadow: 0 6px 12px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px var(--shadow-color);
+}
+
+.step .step-icon-container { /* Styles for the new icon container */
+    margin-bottom: 1.5rem;
+}
+
+.step .step-icon-container i { /* Targeting icon within the container */
+    font-size: 3rem;
+    color: var(--accent-primary);
+}
+
+.step .step-title { /* Styles for the new title class */
+    font-size: 1.6rem; /* Slightly larger title */
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+}
+
+.step .step-description { /* Styles for the new description class */
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Product Grid (Best Sellers, New Arrivals) */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px var(--shadow-color), 0 0 0 1px var(--highlight-shadow-color);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow-color), 0 0 0 1px var(--accent-primary);
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    background-color: #333;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    display: block;
+    object-fit: cover;
+}
+
+.product-card h3 { /* This is an H3 in HTML */
+    font-size: 1.4rem; /* Consistent with .step h3 */
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    flex-grow: 1;
+}
+
+.product-card .brand,
+.product-card .size {
+    font-size: 0.9rem; /* Adjusted */
+    margin-bottom: 0.3rem;
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-regular);
+}
+
+.product-card .price {
+    font-weight: var(--font-weight-bold);
+    color: var(--accent-primary);
+    font-size: 1.2rem; /* Adjusted */
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.product-card .product-cta {
+    margin-top: auto;
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Trusted Brands Section */
+.trusted-brands-section {
+    background-color: var(--bg-dark);
+}
+
+.brands-logo-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.brands-logo-container img {
+    max-height: 60px;
+    max-width: 150px;
+    filter: grayscale(70%) opacity(0.8) contrast(1.2) brightness(1.5);
+    transition: filter 0.3s ease;
+}
+
+.brands-logo-container img:hover {
+    filter: grayscale(0%) opacity(1) contrast(1) brightness(1);
+}
+
+/* Promotions Section */
+.promotions-section {
+    background-color: var(--bg-surface);
+}
+
+.promotion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.promotion-card {
+    background-color: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--accent-primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promotion-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.promotion-card h3 { /* This is an H3 in HTML */
+    font-size: 1.5rem; /* Adjusted */
+    font-weight: var(--font-weight-semibold);
+    color: var(--accent-primary);
+    margin-bottom: 0.75rem;
+}
+
+.promotion-card p {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+    color: var(--text-secondary);
+    flex-grow: 1;
+}
+.promotion-card .promo-cta {
+    margin-top: auto;
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    background-color: var(--bg-dark);
+}
+
+/* Our Advantages Section */
+.our-advantages-section {
+    background-color: var(--bg-surface); /* Or var(--bg-dark) to alternate */
+}
+
+.our-advantages-section .section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem; /* Space before the grid */
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Default responsive grid */
+    gap: 2.5rem; /* Gap between items */
+}
+
+.advantage-item {
+    background-color: var(--bg-dark); /* Individual item background */
+    padding: 2rem;
+    border-radius: 10px; /* Consistent with other cards */
+    text-align: center;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.advantage-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+.advantage-icon-container {
+    margin-bottom: 1.5rem;
+}
+
+.advantage-icon-container i {
+    font-size: 3rem; /* Size of the icon */
+    color: var(--accent-primary); /* Use accent color */
+}
+
+.advantage-title {
+    font-size: 1.5rem; /* Matched other h3 styles */
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+}
+
+.advantage-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.testimonial-carousel-placeholder {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: nowrap; /* Default, but good to be explicit for desktop */
+    padding: 1.5rem;
+    background-color: var(--bg-surface);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: box-shadow 0.3s ease;
+    /* Removed max-width: 700px; to allow flex items to spread if container is wider */
+    /* Or, if a max-width is desired for the whole component: */
+    /* max-width: 1100px; margin: 0 auto; */
+}
+.testimonial-carousel-placeholder:hover {
+    box-shadow: 0 6px 15px var(--shadow-color);
+}
+
+.testimonial-slide {
+    flex-basis: calc(33.333% - 1.5rem); /* (100% / 3) - (2/3 * gap) approx. */
+    text-align: center;
+    background-color: var(--bg-dark);
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure quote and author are spaced */
+}
+
+.testimonial-slide .testimonial-quote { /* Targeting the new class */
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    font-weight: var(--font-weight-regular);
+    flex-grow: 1;
+
+    /* Crucial properties for text overflow prevention: */
+    white-space: normal;       /* Ensures text wraps */
+    overflow-wrap: break-word; /* Standard property for breaking long words */
+    word-wrap: break-word;     /* Older, equivalent property for wider compatibility */
+    word-break: break-all;     /* More aggressive word breaking if issues persist */
+
+    /* Hyphenation (ensure <html> has lang="fr") */
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+
+    height: auto; /* Ensure height is not restricted */
+    min-height: 0; /* Fix potential flex bug with min-height on children if parent is flex */
+}
+
+.testimonial-slide .testimonial-author { /* Targeting the new class */
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--accent-primary);
+    margin-top: 1rem; /* Ensure space above author */
+    margin-bottom: 0;
+}
+
+/* Testimonial Carousel Specific Styles */
+.testimonial-carousel-wrapper {
+    /* Desktop: No specific styles needed unless it affects layout */
+    /* Mobile styles will add position: relative and overflow: hidden */
+}
+
+#testimonial-carousel { /* This is .testimonial-carousel-placeholder in HTML */
+    /* display: flex; /* Already set by .testimonial-carousel-placeholder */
+    /* justify-content: space-between; /* Already set */
+    /* gap: 2rem; /* Already set */
+    /* Important: Prevent JS transition from affecting desktop if JS runs early */
+    transition: none !important;
+    transform: none !important;
+}
+
+/* .testimonial-slide styling is mostly for desktop from previous rules */
+/* Ensure JS width is overridden on desktop if it was applied */
+.testimonial-slide {
+     width: auto !important; /* Override JS inline style for desktop */
+     /* flex-basis: calc(33.333% - 1.5rem); /* Already set */
+     /* flex-shrink: 1; /* Allow shrinking */
+}
+
+
+/* Testimonial Navigation Buttons */
+.testimonial-nav-buttons {
+    display: none; /* Hidden by default, shown by JS/CSS on mobile when carousel is active */
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+.testimonial-nav-button {
+    background-color: var(--accent-primary);
+    color: var(--text-on-accent);
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 5px; /* Consistent radius */
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-semibold);
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+.testimonial-nav-button:hover:not(:disabled) {
+    background-color: var(--accent-primary-darker);
+}
+.testimonial-nav-button:disabled {
+    background-color: var(--border-color);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+
+/* Newsletter Sign-up Section */
+.newsletter-section {
+    background-color: var(--bg-surface);
+    text-align: center;
+}
+
+.newsletter-section p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input[type="email"] {
+    flex-grow: 1;
+    padding: 0.8rem 1rem;
+    border-radius: 5px 0 0 5px;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-size: 1rem;
+    font-weight: var(--font-weight-regular);
+}
+
+.newsletter-form input[type="email"]::placeholder {
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-regular);
+}
+
+.newsletter-form button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 0 5px 5px 0;
+    background-color: var(--accent-primary);
+    color: var(--text-on-accent); /* Use new variable */
+    font-weight: var(--font-weight-semibold); /* Updated */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added transform & shadow */
+    text-transform: uppercase; /* Match CTA */
+    letter-spacing: 0.5px; /* Match CTA */
+}
+
+.newsletter-form button:hover {
+    background-color: var(--accent-primary-darker);
+}
+
+/* Mobile Testimonial Scrolling - Inserted here for safety */
+@media (max-width: 767px) {
+    .testimonial-carousel-placeholder {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        justify-content: flex-start; /* Align items to the start for scrolling */
+        padding-bottom: 1rem; /* Space for scrollbar if it appears */
+        scroll-snap-type: x mandatory; /* Optional: for snap scrolling */
+        gap: 0; /* Reset gap for scrolling layout, use margin on slides */
+        /* Adjust padding if container has its own that interferes with full-width feel of scrolling items */
+        margin-left: calc(-1 * ( (100vw - 100%)/2 + 1rem ) ); /* Attempt to break out of container padding */
+        margin-right: calc(-1 * ( (100vw - 100%)/2 + 1rem ) );
+        padding-left: calc( (100vw - 100%)/2 + 1rem );
+        padding-right: calc( (100vw - 100%)/2 + 1rem );
+    }
+    .testimonial-slide {
+        flex: 0 0 auto; /* Prevent shrinking/growing */
+        width: 80%; /* Each slide takes 80% of viewport */
+        max-width: 300px; /* Max width for a slide on mobile */
+        margin-right: 1rem; /* Space between slides */
+        scroll-snap-align: start; /* Optional: for snap scrolling */
+        height: auto; /* Adjust height to content */
+    }
+    .testimonial-slide:last-child {
+        margin-right: 0; /* No margin for the last slide */
+    }
+
+    /* Added explicit mobile styles for advantages grid here */
+    .advantages-grid {
+        grid-template-columns: 1fr !important; /* Ensure it stacks */
+    }
+    .advantage-item {
+        padding: 1.25rem;
+    }
+    .our-advantages-section .section-intro {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Footer */
+#main-footer {
+    background-color: var(--bg-surface);
+    color: var(--text-secondary);
+    padding: 3rem 0 1.5rem 0;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -3px 8px var(--shadow-color);
+}
+
+#main-footer .footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+#main-footer .footer-column {
+    flex: 1;
+    min-width: 220px;
+}
+
+#main-footer .footer-column h3 { /* This is an H3 in HTML */
+    color: var(--text-light);
+    font-size: 1.4rem; /* Adjusted */
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--accent-primary);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+#main-footer .footer-column ul {
+    list-style: none; /* Remove list style for footer links */
+    padding-left: 0; /* Remove default padding */
+}
+
+#main-footer .footer-column ul li {
+    margin-bottom: 0.5rem;
+}
+
+#main-footer .footer-column ul li a,
+#main-footer .footer-column p a {
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-regular); /* Regular weight for footer links */
+}
+
+#main-footer .footer-column ul li a:hover,
+#main-footer .footer-column p a:hover {
+    color: var(--accent-primary);
+    text-decoration: underline;
+}
+
+#main-footer .footer-column p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem; /* Adjusted */
+}
+
+#main-footer .footer-column .social-icons a {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+
+#main-footer .footer-column .social-icons a:hover {
+    color: var(--accent-primary);
+}
+
+#main-footer .footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem; /* Adjusted */
+}
+
+#main-footer .footer-bottom a {
+    color: var(--accent-primary);
+    font-weight: var(--font-weight-medium); /* Medium for bottom links */
+}
+
+#main-footer .footer-bottom a:hover {
+    color: var(--accent-primary-darker);
+}
+
+/* Font Awesome Icons specific styling (optional) */
+.fas {
+    margin-right: 0.3em;
+}
+.footer-column .fas {
+    margin-right: 0.6em;
+    color: var(--accent-primary);
+}
+
+/* Responsive Adjustments */
+
+/* Large Tablets & Small Laptops */
+@media (max-width: 1200px) {
+    .container {
+        width: 95%; /* Slightly more width for content */
+    }
+    .product-grid {
+        /* Allow 3 cards if space, otherwise 2 */
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .hero-section .hero-content h1 {
+        font-size: 3.5rem; /* Slightly smaller for this breakpoint */
+    }
+     .section-title, h2 { /* h2 used for section titles */
+        font-size: 2.3rem;
+    }
+    h3 { font-size: 1.65rem; }
+    h4 { font-size: 1.2rem; }
+
+    .advantages-grid {
+        /* On larger tablets, might still fit 2 side-by-side if minmax allows */
+        /* Or explicitly set to 2 columns if auto-fit isn't desired here */
+         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+
+
+/* Tablet (Portrait) */
+@media (max-width: 992px) {
+    html {
+        font-size: 15px; /* Adjust base font for better readability on smaller screens */
+    }
+
+    /* Default Hamburger Button Style (Hidden on Desktop) */
+    .hamburger-button {
+        display: none;
+    }
+    /* Default Nav Links style (for desktop) - Ensure it's not fixed positioned */
+    #main-nav-links {
+        display: flex; /* This was the original style for desktop */
+        flex-direction: row;
+        position: static; /* Override fixed if it was globally set */
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+    }
+    #main-nav-links li {
+        width: auto; /* Override mobile style */
+        margin-left: 25px; /* Restore desktop margin */
+    }
+     #main-nav-links li a {
+        display: inline; /* Override mobile style */
+        padding: 0.5rem 0; /* Restore desktop padding */
+        font-size: 1rem; /* Restore desktop font size */
+        border-bottom: 2px solid transparent; /* Restore desktop border */
+     }
+     #main-nav-links li a:hover,
+     #main-nav-links li a:focus,
+     #main-nav-links li a.active {
+        color: var(--accent-primary);
+        border-bottom-color: var(--accent-primary); /* Keep consistent hover */
+        transform: none; /* Override any mobile transform */
+     }
+
+
+    .hero-section {
+        height: auto; /* Allow content to define height */
+        min-height: 60vh; /* Ensure a decent minimum height */
+        padding: 5rem 1rem; /* Adjust padding */
+    }
+    .hero-section .hero-content h1 {
+        font-size: 3rem;
+    }
+    .hero-section .hero-content p {
+        font-size: 1.15rem;
+    }
+    .section-title, h2 { /* h2 used for section titles as per previous hierarchy */
+        font-size: 2.2rem;
+    }
+    h3 { font-size: 1.6rem; }
+    h4 { font-size: 1.15rem; }
+
+    #main-header {
+        padding: 0.6rem 0; /* Slightly reduce header padding */
+    }
+    #main-header .container {
+        /* flex-wrap: wrap; /* Allow header items to wrap if needed - Re-evaluate with hamburger */
+        /* gap: 0.5rem; /* Add gap for wrapped items - Re-evaluate with hamburger */
+        justify-content: space-between; /* Ensure logo and actions are spaced out */
+    }
+    /* #main-header .main-nav { */
+        /* This is now handled by #main-nav-links fixed positioning for mobile */
+    /* } */
+    #main-header .header-actions {
+        flex-basis: auto;
+    }
+    #main-header .search-bar {
+        margin-right: 1rem;
+    }
+    #main-header .search-bar input[type="search"] {
+        min-width: 150px; /* Reduce search bar size */
+        max-width: 200px; /* Prevent it from becoming too large */
+    }
+
+    /* Hamburger Menu Styles & Mobile Navigation Panel */
+    .hamburger-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        border: none;
+        background-color: transparent;
+        color: var(--text-light);
+        cursor: pointer;
+        z-index: 1010;
+        margin-left: 0.5rem;
+    }
+    .hamburger-box {
+        width: 30px;
+        height: 24px;
+        display: inline-block;
+        position: relative;
+    }
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+        width: 100%;
+        height: 3px;
+        background-color: var(--text-light);
+        position: absolute;
+        border-radius: 3px;
+        transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    }
+    .hamburger-inner {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .hamburger-inner::before {
+        content: '';
+        top: -10px;
+    }
+    .hamburger-inner::after {
+        content: '';
+        bottom: -10px;
+    }
+    .hamburger-button.is-active .hamburger-inner {
+        transform: rotate(45deg);
+    }
+    .hamburger-button.is-active .hamburger-inner::before {
+        top: 0;
+        transform: rotate(90deg);
+    }
+    .hamburger-button.is-active .hamburger-inner::after {
+        opacity: 0;
+    }
+
+    #main-nav-links { /* This is the <ul>, now styled for mobile panel */
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
+        background-color: var(--bg-surface);
+        padding: 4rem 2rem 2rem;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        transition: left 0.35s ease-in-out;
+        z-index: 1005;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    #main-nav-links.is-active {
+        left: 0;
+    }
+    /* Ensure these styles are specific to mobile panel */
+    #main-nav-links li {
+        list-style: none;
+        width: 100%;
+        margin-left: 0;
+    }
+    #main-nav-links li a {
+        display: block;
+        padding: 0.75rem 0;
+        font-size: 1.2rem;
+        color: var(--text-light);
+        border-bottom: 1px solid var(--border-color);
+        width: 100%;
+    }
+    #main-nav-links li a:hover,
+    #main-nav-links li a:focus {
+        color: var(--accent-primary);
+        border-bottom-color: var(--accent-primary);
+        transform: none;
+    }
+    #main-nav-links li:last-child a {
+        border-bottom: none;
+    }
+
+    .steps-container {
+        justify-content: space-around;
+    }
+    .step {
+        flex-basis: calc(48% - 1rem); /* Adjust for 2 items on tablet, allowing for gap */
+        min-width: 220px; /* Ensure they don't get too small on tablet */
+        max-width: 350px; /* Max width for a step on tablet */
+    }
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Adjust card sizes */
+    }
+    .promotion-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .advantages-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Allow 2 columns if space */
+    }
+    .advantage-item {
+        padding: 1.5rem; /* Slightly reduce padding for tablet */
+    }
+    .advantage-icon-container i {
+        font-size: 2.5rem; /* Slightly smaller icon for tablet */
+    }
+    .advantage-title {
+        font-size: 1.3rem;
+    }
+
+
+    #main-footer .footer-columns {
+        /* Using flex for footer columns for simpler stacking */
+        display: flex;
+        flex-wrap: wrap; /* Allow columns to wrap */
+        gap: 1.5rem; /* Gap between columns */
+    }
+    #main-footer .footer-column {
+        flex-basis: calc(50% - 1rem); /* Aim for 2 columns */
+        min-width: 200px; /* Minimum width before stacking */
+    }
+}
+
+/* Mobile (Landscape & Portrait) */
+@media (max-width: 767px) {
+    /* html { font-size: 15px; } */
+
+    .testimonial-carousel-wrapper.js-carousel-active {
+        position: relative;
+        overflow: hidden; /* Clip the overflowing track */
+    }
+
+    #testimonial-carousel.js-carousel-active {
+        /* display: flex; /* Already flex from desktop, but ensure it's here */
+        justify-content: flex-start; /* Align slides to the start for transform */
+        gap: 0; /* JS will handle spacing via transform or slide widths */
+        /* No overflow-x: auto here; JS controls movement by transform */
+        /* No scroll-snap here as JS controls precise movement */
+        transition: transform 0.5s ease-in-out;
+        /* JS will set the track width based on number of slides * wrapper width */
+    }
+
+    #testimonial-carousel.js-carousel-active .testimonial-slide {
+        flex-shrink: 0; /* Prevent shrinking */
+        box-sizing: border-box; /* Include padding/border in width calc */
+        flex-basis: auto; /* Reset from desktop */
+        /* JS will set slide width to 100% of the wrapper's width */
+        display: block !important; /* Ensure visibility if overridden */
+        /* margin-right is not needed if slides are 100% of wrapper width and track is transformed */
+    }
+    /* .testimonial-slide:last-child { margin-right: 0; } */ /* Not needed for 100% width slides */
+
+    /* Show nav buttons only when JS carousel is active on mobile */
+    .testimonial-carousel-wrapper.js-carousel-active + .testimonial-nav-buttons {
+        display: flex;
+    }
+
+
+    .advantages-grid {
+        grid-template-columns: 1fr; /* Explicitly stack to single column for mobile */
+    }
+    .advantage-item { /* Further reduce padding for smallest mobiles if needed */
+        padding: 1.25rem;
+    }
+     .our-advantages-section .section-intro { /* Adjust intro text for mobile */
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #main-header {
+        padding: 0.5rem 0;
+    }
+    #main-header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+    #main-header .logo img {
+        max-width: 130px;
+    }
+    /* Main nav is already hidden from 992px breakpoint */
+    #main-header .header-actions {
+        gap: 0.8rem;
+        margin-left: 0; /* Reset margin from tablet view */
+    }
+    #main-header .search-bar {
+        margin-right: 0.5rem;
+        flex-grow: 0;
+        max-width: 160px; /* Further constrain search */
+    }
+    #main-header .search-bar input[type="search"] {
+        min-width: 0;
+        width: 100%;
+        font-size: 0.9rem;
+    }
+    #main-header .search-bar button {
+        padding: 0.5rem 0.7rem;
+    }
+    #main-header .cart-icon a {
+        font-size: 1.4rem;
+    }
+     #main-header .cart-icon a span {
+        font-size: 0.65rem;
+        padding: 0.18rem 0.4rem;
+    }
+
+
+    .hero-section {
+        min-height: 50vh;
+        padding: 3rem 1rem;
+    }
+    .hero-section .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .hero-section .hero-content p {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    .section-padding {
+        padding: 3rem 1rem; /* Reduce section padding */
+    }
+    .section-title, h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    h3 { font-size: 1.5rem; margin-bottom: 0.8rem;}
+    h4 { font-size: 1.1rem; margin-bottom: 0.6rem;}
+    p, li { font-size: 0.95rem; line-height: 1.55; margin-bottom: 0.8rem;}
+
+
+    .steps-container, /* Grid was fine here, but ensuring flex also stacks */
+    .product-grid,
+    .promotion-grid {
+        grid-template-columns: 1fr; /* Stack to single column */
+        gap: 1.5rem; /* Adjust gap for stacked items */
+    }
+     .steps-container {
+        flex-direction: column; /* Stack steps vertically on mobile */
+        align-items: center; /* Center items when stacked */
+    }
+    .step {
+        flex-basis: 100%; /* Each step takes full width on mobile */
+        max-width: 400px; /* Constrain width for readability on mobile */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .product-card, .promotion-card {
+        padding: 1.25rem; /* Reduce card padding */
+    }
+    .product-card img {
+        height: 180px; /* Smaller images in cards */
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: stretch; /* Make input and button full width of container */
+    }
+    .newsletter-form input[type="email"],
+    .newsletter-form button {
+        width: 100%;
+        border-radius: 5px; /* Full radius for both when stacked */
+    }
+    .newsletter-form input[type="email"] {
+        border-right: 1px solid var(--border-color); /* Add back border removed by reset */
+    }
+
+    #main-footer .footer-columns {
+        flex-direction: column; /* Stack footer columns */
+        align-items: center; /* Center align items in footer */
+        text-align: center;
+    }
+    #main-footer .footer-column {
+        flex-basis: 100%; /* Full width */
+        min-width: auto; /* Reset min-width */
+        width: 100%; /* Ensure full width */
+        margin-bottom: 1rem; /* Space between stacked columns */
+    }
+    #main-footer .footer-column:last-child {
+        margin-bottom: 0;
+    }
+    #main-footer .footer-column h3 {
+        display: inline-block; /* Keep border bottom effect, but centered */
+    }
+    #main-footer .footer-column ul {
+        padding-left: 0; /* Reset padding for centered text */
+    }
+}
+
+/* Smallest Mobile Devices */
+@media (max-width: 480px) {
+    html { font-size: 14px; }
+
+    #main-header {
+        padding: 0.4rem 0;
+    }
+    #main-header .logo img {
+        max-width: 110px;
+    }
+    #main-header .header-actions { /* Ensure actions don't cause overflow */
+        flex-wrap: nowrap;
+    }
+    #main-header .search-bar {
+        max-width: 120px; /* Further limit search bar width */
+        margin-right: 0.3rem;
+    }
+    #main-header .search-bar input[type="search"],
+    #main-header .search-bar button {
+        font-size: 0.8rem; /* Smaller font in search */
+        padding: 0.4rem 0.5rem;
+    }
+    #main-header .cart-icon a {
+        font-size: 1.2rem; /* Smaller cart icon */
+    }
+    #main-header .cart-icon a span {
+        font-size: 0.55rem;
+        top: -5px; /* Adjust position */
+        right: -7px; /* Adjust position */
+        padding: 0.12rem 0.3rem;
+    }
+
+    .hero-section {
+        min-height: 45vh;
+        padding: 2.5rem 1rem;
+    }
+    .hero-section .hero-content h1 {
+        font-size: 2rem;
+    }
+    .hero-section .hero-content p {
+        font-size: 1rem;
+    }
+    .section-padding {
+        padding: 2.5rem 0.75rem; /* Slightly less horizontal padding */
+    }
+    .section-title, h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    h3 { font-size: 1.3rem; }
+    h4 { font-size: 1rem; }
+    p, li { font-size: 0.9rem; }
+
+    .cta-button {
+        padding: 0.7rem 1.3rem; /* Smaller CTA buttons */
+        font-size: 0.85rem;
+    }
+    .product-card .price {
+        font-size: 1.05rem;
+    }
+    .product-card, .promotion-card, .step {
+        padding: 1rem; /* Consistent padding for cards */
+    }
+}
+
+/* === Appended Testimonial Carousel CSS (Simplified JS Version) === */
+
+/* Desktop Fallback / Base for Simplified Carousel */
+.testimonial-carousel-wrapper {
+    /* No specific desktop styles needed unless it affects overall layout */
+}
+
+/* Styles for when JS is NOT controlling the carousel (desktop default) */
+#testimonial-carousel {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    transition: none !important;
+    transform: none !important;
+}
+
+#testimonial-carousel .testimonial-slide {
+     width: auto !important;
+     flex-basis: calc(33.333% - 1.5rem);
+     flex-shrink: 1;
+}
+
+
+/* Testimonial Navigation Buttons (common style) */
+.testimonial-nav-buttons {
+    display: none; /* Hidden by default */
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+.testimonial-nav-button {
+    background-color: var(--accent-primary);
+    color: var(--text-on-accent);
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-semibold);
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+.testimonial-nav-button:hover:not(:disabled) {
+    background-color: var(--accent-primary-darker);
+}
+.testimonial-nav-button:disabled {
+    background-color: var(--border-color);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Mobile Styles for SIMPLIFIED JS Testimonial Carousel */
+@media (max-width: 767px) {
+    .testimonial-carousel-wrapper.js-simplified-carousel-active {
+        position: relative;
+        overflow: hidden;
+    }
+
+    #testimonial-carousel.js-simplified-carousel-active {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0;
+        transition: transform 0.3s ease; /* Simpler transition */
+        /* JS will set width and transform */
+    }
+
+    #testimonial-carousel.js-simplified-carousel-active .testimonial-slide {
+        width: 100%; /* JS will set this to wrapper.offsetWidth, but this is fallback */
+        flex-shrink: 0;
+        box-sizing: border-box;
+        flex-basis: auto; /* Reset desktop basis */
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    /* Show nav buttons only when JS simplified carousel is active on mobile */
+    .testimonial-carousel-wrapper.js-simplified-carousel-active + .testimonial-nav-buttons {
+        display: flex;
+    }
+}
+
+/* === Header Refinements: Scroll Shadow & Input/Icon Enhancements === */
+
+#main-header {
+    /* Ensure transition is present for smooth shadow change */
+    transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Added background-color if it changes */
+}
+
+#main-header.header-scrolled {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Enhanced shadow for dark theme */
+    /* Optionally, slightly change background on scroll if needed */
+    /* background-color: var(--bg-dark); */
+}
+
+/* Search Bar Enhancements */
+#main-header .search-bar input[type="search"] {
+    border: 1px solid var(--border-color); /* Default border */
+    /* border-radius: 5px 0 0 5px; /* Already set, ensure it's what you want */
+    /* transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Already set */
+}
+
+#main-header .search-bar input[type="search"]:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(255, 221, 3, 0.25); /* Adjusted glow to be slightly more visible */
+    outline: none; /* Remove default browser outline if custom shadow is used */
+}
+
+#main-header .search-bar button {
+    /* Ensure existing styles are complementary */
+    /* transition: background-color 0.3s ease; /* Already set */
+}
+/* #main-header .search-bar button:hover already has hover from main styles */
+
+
+/* Cart Icon Enhancements */
+#main-header .cart-icon a {
+    padding: 0.5rem; /* Add some padding to make hover bg more visible */
+    border-radius: 50%; /* Make it circular for a nice hover effect */
+    /* transition: background-color 0.3s ease, transform 0.3s ease; /* Already set */
+}
+
+#main-header .cart-icon a:hover,
+#main-header .cart-icon a:focus {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background highlight */
+    /* transform: scale(1.1); /* Existing transform is good */
+}
+
+/* Ensure cart notification bubble remains visible and well-positioned */
+#main-header .cart-icon a span {
+    /* Ensure z-index or positioning keeps it on top if bg is added to parent link */
+}
+
+/* === Modern Design Polish & Review (Subtask 17) === */
+
+/* 1. Micro-interactions/Transitions */
+
+/* .cta-button already has a comprehensive transition from previous steps:
+   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; */
+
+/* Desktop Testimonial Slide Hover Effect */
+#testimonial-carousel:not(.js-simplified-carousel-active) .testimonial-slide {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#testimonial-carousel:not(.js-simplified-carousel-active) .testimonial-slide:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Slightly enhanced shadow */
+}
+
+/* .advantage-item and .step already have transitions from their initial styling:
+   transition: transform 0.3s ease, box-shadow 0.3s ease; */
+
+/* Navigation Link Transitions */
+#main-header .main-nav ul li a {
+    /* Existing: color 0.3s ease, border-bottom-color 0.3s ease; */
+    /* Adding transform to existing transition if not already there */
+    transition: color 0.3s ease, border-bottom-color 0.3s ease, transform 0.2s ease-out;
+}
+/* Hover effect (transform: translateY(-2px);) is already applied in header styles */
+
+#main-footer a { /* Generic footer links */
+    transition: color 0.2s ease-out;
+}
+/* Hover color is already handled */
+
+.mobile-nav-link { /* For bottom mobile nav */
+    /* transition: color 0.3s ease; /* Already set */
+}
+
+/* 2. Spacing & Alignment - Review indicates current setup is reasonable. */
+
+/* 3. Depth/Shadows & Glassmorphism */
+
+/* Soften Header Scroll Shadow */
+#main-header.header-scrolled {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Softened shadow */
+}
+
+/* Glassmorphism for Cards */
+.product-card,
+.testimonial-slide, /* Base for desktop and when JS is not active on mobile */
+#testimonial-carousel.js-simplified-carousel-active .testimonial-slide, /* Specifically for JS active mobile slides */
+.advantage-item,
+.step {
+    background-color: rgba(40, 40, 40, 0.75); /* Semi-transparent surface, slightly more opaque */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Slightly more visible border */
+    /* Base shadow for glassmorphism - can be subtle as blur adds depth */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Ensure hover effects for cards are still prominent with glassmorphism */
+.product-card:hover, .product-card:focus-within {
+    background-color: rgba(50, 50, 50, 0.8); /* Slightly less transparent on hover */
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35),
+                0 8px 15px rgba(0,0,0,0.25);
+    outline-color: rgba(255, 221, 3, 0.7);
+}
+
+#testimonial-carousel:not(.js-simplified-carousel-active) .testimonial-slide:hover {
+    background-color: rgba(50, 50, 50, 0.8);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+}
+
+.advantage-item:hover,
+.step:hover {
+    background-color: rgba(50, 50, 50, 0.8);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.3);
+}

@@ -1,12 +1,362 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Magasin de Pneus - Pneus et Services Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Placeholder for potential icon library e.g., Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <h1>Salut</h1>
+    <header id="main-header">
+        <div class="container">
+            <div class="logo">
+        <img src="images/logo-placeholder-dark.png" alt="Logo Magasin de Pneus">
+            </div>
+            <nav class="main-nav">
+                <ul id="main-nav-links">
+                    <li><a href="index.html" aria-label="Accueil">Accueil</a></li>
+                    <li><a href="produits.html" aria-label="Produits">Produits</a></li>
+                    <li><a href="index.html#best-sellers" aria-label="Nos meilleures ventes">Meilleures Ventes</a></li>
+                    <li><a href="index.html#new-arrivals" aria-label="Nouveautés">Nouveautés</a></li>
+                    <li><a href="index.html#promotions" aria-label="Promotions">Promotions</a></li>
+                    <li><a href="index.html#about-us" aria-label="À propos de nous">À Propos</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <form class="search-bar">
+            <input type="search" placeholder="Rechercher des pneus...">
+            <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="cart-icon">
+            <a href="#cart" aria-label="Panier"><i class="fas fa-shopping-cart"></i><span>0</span></a>
+                </div>
+                <button id="hamburger-button" class="hamburger-button" aria-label="Ouvrir le menu" aria-expanded="false">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero-section section-padding"> <!-- Added section-padding -->
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Votre Destination Ultime pour des Pneus de Qualité</h1>
+                <p class="hero-subtitle">Découvrez une large gamme de pneus adaptés à tous les véhicules et budgets. Performance, sécurité et les meilleures marques vous attendent.</p>
+                <div class="hero-cta-buttons">
+                    <a href="#best-sellers" class="cta-button hero-cta-primary">Trouver Vos Pneus</a>
+                    <a href="#our-advantages" class="cta-button hero-cta-secondary">Nos Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="site-main-content">
+        <section id="how-it-works" class="how-it-works-section section-padding">
+            <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">Comment Ça Marche</h2>
+                <div class="steps-container">
+                    <div class="step">
+                    <div class="step-icon-container">
+                        <i class="fas fa-shopping-cart fa-2x"></i>
+                    </div>
+                    <h3 class="step-title">1. Commandez vos pneus</h3>
+                    <p class="step-description">Parcourez notre sélection et passez commande en quelques clics.</p>
+                    </div>
+                    <div class="step">
+                    <div class="step-icon-container">
+                        <i class="fas fa-truck fa-2x"></i>
+                    </div>
+                    <h3 class="step-title">2. Recevez-les rapidement</h3>
+                    <p class="step-description">Livraison directe à votre domicile ou garage partenaire.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon-container">
+                            <i class="fas fa-tools fa-2x"></i>
+                        </div>
+                        <h3 class="step-title">3. Montage Facilité</h3>
+                        <p class="step-description">Choisissez le montage à domicile ou chez l'un de nos partenaires agréés.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="best-sellers" class="best-sellers-section section-padding">
+            <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">Nos Meilleures Ventes</h2>
+                <div class="product-grid">
+                    <!-- Placeholder Product Card 1 -->
+                    <div class="product-card">
+                    <img src="images/tire-bestseller1.jpg" alt="Pneu Meilleure Vente 1">
+                        <h3>Pirelli P Zero</h3>
+                    <p class="brand">Marque: Pirelli</p>
+                    <p class="size">Taille: 245/40R19</p>
+                    <p class="price">Prix: €220</p>
+                    <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                    <!-- Placeholder Product Card 2 -->
+                    <div class="product-card">
+                    <img src="images/tire-bestseller2.jpg" alt="Pneu Meilleure Vente 2">
+                        <h3>Michelin CrossClimate 2</h3>
+                    <p class="brand">Marque: Michelin</p>
+                    <p class="size">Taille: 215/55R17</p>
+                    <p class="price">Prix: €190</p>
+                    <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                    <!-- Placeholder Product Card 3 -->
+                    <div class="product-card">
+                    <img src="images/tire-bestseller3.jpg" alt="Pneu Meilleure Vente 3">
+                        <h3>BFGoodrich All-Terrain T/A KO2</h3>
+                    <p class="brand">Marque: BFGoodrich</p>
+                    <p class="size">Taille: 275/70R18</p>
+                    <p class="price">Prix: €250</p>
+                    <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                     <!-- Placeholder Product Card 4 (optional) -->
+                    <div class="product-card">
+                    <img src="images/tire-bestseller4.jpg" alt="Pneu Meilleure Vente 4">
+                        <h3>Hankook Dynapro AT2</h3>
+                    <p class="brand">Marque: Hankook</p>
+                    <p class="size">Taille: 265/65R17</p>
+                    <p class="price">Prix: €160</p>
+                    <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                </div>
+                <div class="section-cta-container">
+                    <a href="produits.html" class="cta-button">Voir Tous Nos Pneus</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="trusted-brands" class="trusted-brands-section section-padding">
+            <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">Marques de Confiance</h2>
+                <div class="brands-logo-container">
+                    <img src="images/brand-logo-michelin.png" alt="Michelin">
+                    <img src="images/brand-logo-goodyear.png" alt="Goodyear">
+                    <img src="images/brand-logo-continental.png" alt="Continental">
+                    <img src="images/brand-logo-pirelli.png" alt="Pirelli">
+                    <img src="images/brand-logo-bridgestone.png" alt="Bridgestone">
+                    <img src="images/brand-logo-hankook.png" alt="Hankook">
+                </div>
+            </div>
+        </section>
+
+        <section id="new-arrivals" class="new-arrivals-section section-padding">
+            <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">Nouveautés</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="images/tire-new1.jpg" alt="Pneu Michelin Pilot Sport 4S">
+                        <h3>Michelin Pilot Sport 4S</h3>
+                        <p class="brand">Marque: Michelin</p>
+                        <p class="size">Taille: 225/45R17</p>
+                        <p class="price">Prix: €150</p>
+                        <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/tire-new2.jpg" alt="Pneu Goodyear Eagle F1 Asymmetric 5">
+                        <h3>Goodyear Eagle F1 Asymmetric 5</h3>
+                        <p class="brand">Marque: Goodyear</p>
+                        <p class="size">Taille: 235/40R18</p>
+                        <p class="price">Prix: €170</p>
+                        <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/tire-new3.jpg" alt="Pneu Continental PremiumContact 6">
+                        <h3>Continental PremiumContact 6</h3>
+                        <p class="brand">Marque: Continental</p>
+                        <p class="size">Taille: 205/55R16</p>
+                        <p class="price">Prix: €120</p>
+                        <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                </div>
+                <div class="section-cta-container">
+                    <a href="produits.html" class="cta-button">Découvrir Toutes les Nouveautés</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="promotions" class="promotions-section section-padding">
+            <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">Offres Spéciales</h2>
+                <div class="promotion-grid">
+                    <div class="promotion-card">
+                    <h3>Soldes de Printemps - 20% sur Pirelli</h3>
+                    <p>Réductions sur tous les modèles Pirelli. Préparez-vous pour la saison !</p>
+                    <a href="#" class="cta-button promo-cta">Acheter Soldes Pirelli</a>
+                    </div>
+                    <div class="promotion-card">
+                    <h3>Bridgestone: 3 Achetés = 1 Offert</h3>
+                    <p>Offre à durée limitée sur une sélection de pneus Bridgestone. Ne manquez pas ça !</p>
+                    <a href="#" class="cta-button promo-cta">Découvrir Offres Bridgestone</a>
+                    </div>
+                    <div class="promotion-card">
+                    <h3>Parallélisme Offert avec un jeu Dunlop</h3>
+                    <p>Achetez 4 pneus Dunlop et obtenez un service de parallélisme gratuit.</p>
+                    <a href="#" class="cta-button promo-cta">Voir Offre Dunlop</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials-section section-padding">
+            <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">Ce Que Disent Nos Clients</h2>
+            <div class="testimonial-carousel-wrapper">
+                <div id="testimonial-carousel" class="testimonial-carousel-placeholder">
+                    <div class="testimonial-slide">
+                        <p class="testimonial-quote">"Service incroyable et pneus de haute qualité ! J'ai trouvé exactement ce dont j'avais besoin pour mon SUV, et le montage a été rapide et professionnel. Je recommande vivement !"</p>
+                        <p class="testimonial-author">- Alexandre P.</p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="testimonial-quote">"Très satisfait de mon achat. Livraison rapide et excellent service client. Les conseils pour choisir mes pneus étaient parfaits."</p>
+                        <p class="testimonial-author">- Marie L.</p>
+                    </div>
+                    <div class="testimonial-slide">
+                        <p class="testimonial-quote">"Les meilleurs prix que j'ai pu trouver en ligne et une navigation facile sur le site. Le processus de commande était simple et clair."</p>
+                        <p class="testimonial-author">- Jean D.</p>
+                    </div>
+                </div>
+                <div class="testimonial-nav-buttons">
+                    <button id="testimonial-prev" class="testimonial-nav-button prev" aria-label="Avis précédent">&lt;</button>
+                    <button id="testimonial-next" class="testimonial-nav-button next" aria-label="Avis suivant">&gt;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="our-advantages" class="our-advantages-section section-padding section-animate">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">Pourquoi choisir Ouipneu.fr ?</h2>
+                <p class="section-intro">Chez Ouipneu.fr, nous nous engageons à vous offrir la meilleure expérience d'achat de pneus en ligne, avec des avantages qui font la différence.</p>
+                <div class="advantages-grid">
+                    <div class="advantage-item">
+                        <div class="advantage-icon-container">
+                            <i class="fas fa-layer-group fa-2x"></i>
+                        </div>
+                        <h3 class="advantage-title">Large Choix de Pneus</h3>
+                        <p class="advantage-description">Des milliers de références parmi les plus grandes marques pour tous les véhicules et budgets.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="advantage-icon-container">
+                            <i class="fas fa-shipping-fast fa-2x"></i>
+                        </div>
+                        <h3 class="advantage-title">Livraison Rapide et Flexible</h3>
+                        <p class="advantage-description">Recevez vos pneus chez vous ou dans l'un de nos centres de montage partenaires, selon votre convenance.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="advantage-icon-container">
+                            <i class="fas fa-shield-alt fa-2x"></i>
+                        </div>
+                        <h3 class="advantage-title">Retour Facile & Garantie Constructeur</h3>
+                        <p class="advantage-description">Achetez en toute confiance avec notre politique de retour simplifié et la garantie fabricant préservée.</p>
+                    </div>
+                    <div class="advantage-item">
+                        <div class="advantage-icon-container">
+                            <i class="fas fa-headset fa-2x"></i>
+                        </div>
+                        <h3 class="advantage-title">Service Client Réactif & Conseil d'Expert</h3>
+                        <p class="advantage-description">Notre équipe est à votre écoute pour vous guider et répondre à toutes vos questions techniques.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-us" class="about-us-section section-padding section-animate">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">À Propos de Nous</h2>
+                <div class="about-us-content">
+                    <div class="about-us-text">
+                        <p>Bienvenue chez Ouipneu.fr, votre partenaire de confiance pour l'achat de pneus en ligne. Depuis notre création, nous nous engageons à offrir à nos clients une expérience d'achat simple, rapide et sécurisée, avec un catalogue complet de pneus pour tous types de véhicules et tous budgets.</p>
+                        <p>Notre mission est de vous fournir non seulement des produits de qualité supérieure provenant des meilleures marques, mais aussi un service client exceptionnel. Notre équipe d'experts est toujours prête à vous conseiller et à vous aider à trouver les pneus parfaitement adaptés à vos besoins et à votre style de conduite. Nous croyons en la transparence, des prix compétitifs et une livraison efficace pour garantir votre satisfaction totale.</p>
+                        <p>Merci de faire confiance à Ouipneu.fr pour la sécurité et la performance de votre véhicule.</p>
+                    </div>
+                    <div class="about-us-image-container">
+                        <img src="https://via.placeholder.com/500x350.png?text=Notre+Équipe+Ouipneu.fr" alt="À Propos de Ouipneu.fr">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="newsletter-signup" class="newsletter-section section-padding">
+            <div class="container">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">Restez Informé</h2>
+            <p>Abonnez-vous à notre newsletter pour les dernières offres, conseils d'entretien des pneus et nouveautés.</p>
+                <form class="newsletter-form">
+                <input type="email" placeholder="Entrez votre adresse e-mail" required>
+                <button type="submit" class="cta-button">S'abonner</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                <h3>À Propos de Nous</h3>
+                <p>Votre partenaire de confiance pour des pneus premium, un montage expert et un service client exceptionnel. Notre passion : votre sécurité sur la route.</p>
+                </div>
+                <div class="footer-column">
+                <h3>Liens Rapides</h3>
+                    <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits.html">Produits</a></li>
+                    <li><a href="index.html#best-sellers">Meilleures Ventes</a></li>
+                    <li><a href="index.html#new-arrivals">Nouveautés</a></li>
+                    <li><a href="index.html#promotions">Promotions</a></li>
+                    <li><a href="index.html#about-us">À Propos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                <h3>Contactez-Nous</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue des Pneus, Ville Auto, PA 12345</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> assistance@magasinpneus.example.com</p>
+                </div>
+                <div class="footer-column">
+                <h3>Suivez-Nous</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tire Shop. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-link" aria-label="Accueil"> <!-- Updated to index.html -->
+            <i class="fas fa-home"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="#" class="mobile-nav-link" id="mobile-search-button" aria-label="Rechercher">
+            <i class="fas fa-search"></i>
+            <span>Rechercher</span>
+        </a>
+        <button class="mobile-nav-link hamburger-button" id="mobile-menu-toggle" aria-label="Ouvrir le menu principal" aria-expanded="false" aria-controls="main-nav-links">
+             <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+            <span>Menu</span>
+        </button>
+    </nav>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

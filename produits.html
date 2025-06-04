@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Pneus - Ouipneu.fr</title> <!-- Changed title -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header id="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo-placeholder-dark.png" alt="Logo Magasin de Pneus">
+            </div>
+            <nav class="main-nav">
+                <ul id="main-nav-links">
+                    <li><a href="index.html" aria-label="Accueil">Accueil</a></li>
+                    <li><a href="produits.html" aria-label="Produits">Produits</a></li>
+                    <li><a href="index.html#best-sellers" aria-label="Nos meilleures ventes">Meilleures Ventes</a></li>
+                    <li><a href="index.html#new-arrivals" aria-label="Nouveautés">Nouveautés</a></li>
+                    <li><a href="index.html#promotions" aria-label="Promotions">Promotions</a></li>
+                    <li><a href="index.html#about-us" aria-label="À propos de nous">À Propos</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <form class="search-bar">
+                    <input type="search" placeholder="Rechercher des pneus...">
+                    <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="cart-icon">
+                    <a href="#cart" aria-label="Panier"><i class="fas fa-shopping-cart"></i><span>0</span></a>
+                </div>
+                <button id="hamburger-button" class="hamburger-button" aria-label="Ouvrir le menu" aria-expanded="false">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="site-main-content">
+        <section id="all-products" class="all-products-section section-padding">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up" data-aos-duration="700" data-aos-once="true">Tous Nos Pneus</h2>
+
+                <div class="product-filters-container" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100" data-aos-once="true">
+                    <form id="product-filters-form">
+                        <div class="filter-group tire-size-group">
+                            <label>Dimensions du Pneu:</label> <!-- Overall label for the group -->
+                            <div class="tire-size-inputs-row">
+                                <div class="filter-group"> <!-- Sub-group for Width -->
+                                    <label for="filter-width">Largeur:</label>
+                                    <select id="filter-width" name="width">
+                                        <option value="">Tout</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group"> <!-- Sub-group for Ratio -->
+                                    <label for="filter-ratio">Ratio:</label>
+                                    <select id="filter-ratio" name="ratio">
+                                        <option value="">Tout</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group"> <!-- Sub-group for Diameter -->
+                                    <label for="filter-diameter">Diamètre:</label>
+                                    <select id="filter-diameter" name="diameter">
+                                        <option value="">Tout</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group brand-group">
+                            <label for="filter-brand">Marque:</label>
+                            <select id="filter-brand" name="brand">
+                                <option value="">Toutes</option>
+                                <!-- JS will populate -->
+                            </select>
+                        </div>
+
+                        <div class="filter-group type-group">
+                            <label for="filter-type">Type:</label>
+                            <select id="filter-type" name="type">
+                                <option value="">Tous</option>
+                                <option value="Été">Été</option>
+                                <option value="Hiver">Hiver</option>
+                                <option value="Toutes Saisons">Toutes Saisons</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group features-filter-group">
+                            <label class="filter-group-title">Caractéristiques:</label>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="filter-runflat" name="runflat" value="true">
+                                <label for="filter-runflat">Runflat</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="filter-reinforced" name="reinforced" value="true">
+                                <label for="filter-reinforced">Pneu Renforcé</label>
+                            </div>
+                        </div>
+
+                        <div class="filter-actions">
+                            <button type="button" id="reset-filters-button" class="cta-button secondary">Réinitialiser</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="product-grid"> <!-- Removed data-aos from grid container, cards will animate -->
+                    <!-- Product Card 1 -->
+                    <div class="product-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" data-aos-once="true" data-runflat="false" data-reinforced="false">
+                        <div class="product-image-placeholder"> <!-- Assuming this div is for image styling if needed -->
+                            <img src="https://via.placeholder.com/300x200.png?text=Pneu+Michelin" alt="Pneu Michelin Primacy 4">
+                        </div>
+                        <h3 class="product-name">Michelin Primacy 4</h3>
+                        <p class="product-brand">Marque: Michelin</p>
+                        <p class="product-specs">Taille: 205/55R16 | Été</p>
+                        <p class="product-price">€95.00</p>
+                        <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="product-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" data-aos-once="true" data-runflat="true" data-reinforced="false">
+                        <div class="product-image-placeholder">
+                            <img src="https://via.placeholder.com/300x200.png?text=Pneu+Continental" alt="Pneu Continental EcoContact 6">
+                        </div>
+                        <h3 class="product-name">Continental EcoContact 6</h3>
+                        <p class="product-brand">Marque: Continental</p>
+                        <p class="product-specs">Taille: 195/65R15 | Été</p>
+                        <p class="product-price">€85.00</p>
+                        <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="product-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" data-aos-once="true" data-runflat="false" data-reinforced="true">
+                        <div class="product-image-placeholder">
+                            <img src="https://via.placeholder.com/300x200.png?text=Pneu+Goodyear" alt="Pneu Goodyear Vector 4Seasons">
+                        </div>
+                        <h3 class="product-name">Goodyear Vector 4Seasons Gen-3</h3>
+                        <p class="product-brand">Marque: Goodyear</p>
+                        <p class="product-specs">Taille: 225/45R17 | Toutes Saisons</p>
+                        <p class="product-price">€110.00</p>
+                        <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                    <!-- Product Card 4 -->
+                    <div class="product-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" data-aos-once="true" data-runflat="true" data-reinforced="true">
+                        <div class="product-image-placeholder">
+                            <img src="https://via.placeholder.com/300x200.png?text=Pneu+Pirelli" alt="Pneu Pirelli Winter Sottozero 3">
+                        </div>
+                        <h3 class="product-name">Pirelli Winter Sottozero 3</h3>
+                        <p class="product-brand">Marque: Pirelli</p>
+                        <p class="product-specs">Taille: 235/40R18 | Hiver</p>
+                        <p class="product-price">€150.00</p>
+                        <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                    <!-- Product Card 5 -->
+                    <div class="product-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" data-aos-once="true" data-runflat="false" data-reinforced="false">
+                        <div class="product-image-placeholder">
+                             <img src="https://via.placeholder.com/300x200.png?text=Pneu+Bridgestone" alt="Pneu Bridgestone Turanza T005">
+                        </div>
+                        <h3 class="product-name">Bridgestone Turanza T005</h3>
+                        <p class="product-brand">Marque: Bridgestone</p>
+                        <p class="product-specs">Taille: 215/60R16 | Été</p>
+                        <p class="product-price">€105.00</p>
+                        <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                    <!-- Product Card 6 -->
+                    <div class="product-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" data-aos-once="true" data-runflat="false" data-reinforced="true">
+                        <div class="product-image-placeholder">
+                            <img src="https://via.placeholder.com/300x200.png?text=Pneu+Hankook" alt="Pneu Hankook Kinergy 4S2">
+                        </div>
+                        <h3 class="product-name">Hankook Kinergy 4S2</h3>
+                        <p class="product-brand">Marque: Hankook</p>
+                        <p class="product-specs">Taille: 185/60R15 | Toutes Saisons</p>
+                        <p class="product-price">€75.00</p>
+                        <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                     <!-- Product Card 7 -->
+                    <div class="product-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" data-aos-once="true" data-runflat="true" data-reinforced="false">
+                        <div class="product-image-placeholder">
+                            <img src="https://via.placeholder.com/300x200.png?text=Pneu+Dunlop" alt="Pneu Dunlop Sport BluResponse">
+                        </div>
+                        <h3 class="product-name">Dunlop Sport BluResponse</h3>
+                        <p class="product-brand">Marque: Dunlop</p>
+                        <p class="product-specs">Taille: 205/50R17 | Été</p>
+                        <p class="product-price">€98.00</p>
+                        <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                    <!-- Product Card 8 -->
+                    <div class="product-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200" data-aos-once="true" data-runflat="false" data-reinforced="true">
+                        <div class="product-image-placeholder">
+                            <img src="https://via.placeholder.com/300x200.png?text=Pneu+Nokian" alt="Pneu Nokian WR Snowproof">
+                        </div>
+                        <h3 class="product-name">Nokian WR Snowproof P</h3>
+                        <p class="product-brand">Marque: Nokian</p>
+                        <p class="product-specs">Taille: 225/50R17 | Hiver</p>
+                        <p class="product-price">€130.00</p>
+                        <a href="#" class="cta-button product-cta">Voir Détails</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                <h3>À Propos de Nous</h3>
+                <p>Votre partenaire de confiance pour des pneus premium, un montage expert et un service client exceptionnel. Notre passion : votre sécurité sur la route.</p>
+                </div>
+                <div class="footer-column">
+                <h3>Liens Rapides</h3>
+                    <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits.html">Produits</a></li>
+                    <li><a href="index.html#best-sellers">Meilleures Ventes</a></li>
+                    <li><a href="index.html#new-arrivals">Nouveautés</a></li>
+                    <li><a href="index.html#promotions">Promotions</a></li>
+                    <li><a href="index.html#about-us">À Propos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                <h3>Contactez-Nous</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue des Pneus, Ville Auto, PA 12345</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> assistance@magasinpneus.example.com</p>
+                </div>
+                <div class="footer-column">
+                <h3>Suivez-Nous</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Magasin de Pneus. Tous droits réservés. | <a href="#">Politique de Confidentialité</a> | <a href="#">Conditions d'Utilisation</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-link" aria-label="Accueil"> <!-- Updated to index.html -->
+            <i class="fas fa-home"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="#" class="mobile-nav-link" id="mobile-search-button" aria-label="Rechercher">
+            <i class="fas fa-search"></i>
+            <span>Rechercher</span>
+        </a>
+        <button class="mobile-nav-link hamburger-button" id="mobile-menu-toggle" aria-label="Ouvrir le menu principal" aria-expanded="false" aria-controls="main-nav-links">
+             <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+            <span>Menu</span>
+        </button>
+    </nav>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
