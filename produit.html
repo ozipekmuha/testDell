@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Produit - Ouipneu.fr</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header id="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo-placeholder-dark.png" alt="Logo Magasin de Pneus">
+            </div>
+            <nav class="main-nav">
+                <ul id="main-nav-links">
+                    <li><a href="index.html" aria-label="Accueil">Accueil</a></li>
+                    <li><a href="produits.html" aria-label="Produits">Produits</a></li>
+                    <li><a href="index.html#best-sellers" aria-label="Nos meilleures ventes">Meilleures Ventes</a></li>
+                    <li><a href="index.html#new-arrivals" aria-label="Nouveautés">Nouveautés</a></li>
+                    <li><a href="index.html#promotions" aria-label="Promotions">Promotions</a></li>
+                    <li><a href="index.html#about-us" aria-label="À propos de nous">À Propos</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <form class="search-bar">
+                    <input type="search" placeholder="Rechercher des pneus...">
+                    <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="cart-icon">
+                    <a href="#cart" aria-label="Panier"><i class="fas fa-shopping-cart"></i><span>0</span></a>
+                </div>
+                <button id="hamburger-button" class="hamburger-button" aria-label="Ouvrir le menu" aria-expanded="false">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="site-main-content">
+        <section id="product-detail-section" class="section-padding">
+            <div class="container">
+                <div class="product-detail-layout">
+                    <!-- Column 1: Product Image -->
+                    <div class="product-detail-image-column">
+                        <div class="product-image-gallery">
+                            <img src="https://via.placeholder.com/500x400.png?text=Pneu+Exemple" alt="Pneu Exemple" id="main-product-image">
+                            <!-- Optional: Thumbnails for gallery could go here -->
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Product Info -->
+                    <div class="product-detail-info-column">
+                        <h1 class="product-title" id="product-detail-name">Nom du Pneu Exemple</h1>
+
+                        <div class="product-meta-info">
+                            <span class="meta-brand">Marque: <strong id="product-detail-brand">Marque Exemple</strong></span>
+                            <span class="meta-availability">Disponibilité: <strong id="product-detail-availability">En Stock</strong></span>
+                        </div>
+
+                        <p class="product-price" id="product-detail-price">€123.45</p>
+
+                        <div class="product-description">
+                            <h2 class="section-subtitle">Description</h2>
+                            <p id="product-detail-description">
+                                Ceci est une description détaillée du pneu exemple. Il offre une excellente adhérence sur sol mouillé et une longévité remarquable. Conçu pour les conducteurs exigeants, ce pneu combine sécurité et performance. Ses rainures optimisées assurent une évacuation efficace de l'eau, réduisant les risques d'aquaplaning.
+                            </p>
+                        </div>
+
+                        <div class="product-specifications">
+                            <h2 class="section-subtitle">Caractéristiques Techniques</h2>
+                            <ul id="product-detail-specs-list">
+                                <li>Dimension: <strong class="spec-value">205/55 R16</strong></li>
+                                <li>Type: <strong class="spec-value">Été</strong></li>
+                                <li>Indice de charge: <strong class="spec-value">91</strong></li>
+                                <li>Indice de vitesse: <strong class="spec-value">V</strong></li>
+                                <li>Runflat: <strong class="spec-value">Non</strong></li>
+                                <li>Renforcé (XL): <strong class="spec-value">Oui</strong></li>
+                            </ul>
+                        </div>
+
+                        <div class="product-actions">
+                            <div class="quantity-selector">
+                                <label for="quantity">Quantité:</label>
+                                <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                            </div>
+                            <button type="button" class="cta-button add-to-cart-button">
+                                <i class="fas fa-shopping-cart"></i> Ajouter au Panier
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                <h3>À Propos de Nous</h3>
+                <p>Votre partenaire de confiance pour des pneus premium, un montage expert et un service client exceptionnel. Notre passion : votre sécurité sur la route.</p>
+                </div>
+                <div class="footer-column">
+                <h3>Liens Rapides</h3>
+                    <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="produits.html">Produits</a></li>
+                    <li><a href="index.html#best-sellers">Meilleures Ventes</a></li>
+                    <li><a href="index.html#new-arrivals">Nouveautés</a></li>
+                    <li><a href="index.html#promotions">Promotions</a></li>
+                    <li><a href="index.html#about-us">À Propos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                <h3>Contactez-Nous</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue des Pneus, Ville Auto, PA 12345</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> assistance@magasinpneus.example.com</p>
+                </div>
+                <div class="footer-column">
+                <h3>Suivez-Nous</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Magasin de Pneus. Tous droits réservés. | <a href="#">Politique de Confidentialité</a> | <a href="#">Conditions d'Utilisation</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-link" aria-label="Accueil">
+            <i class="fas fa-home"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="#" class="mobile-nav-link" id="mobile-search-button" aria-label="Rechercher">
+            <i class="fas fa-search"></i>
+            <span>Rechercher</span>
+        </a>
+        <button class="mobile-nav-link hamburger-button" id="mobile-menu-toggle" aria-label="Ouvrir le menu principal" aria-expanded="false" aria-controls="main-nav-links">
+             <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+            <span>Menu</span>
+        </button>
+    </nav>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

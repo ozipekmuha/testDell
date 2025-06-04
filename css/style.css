@@ -2804,3 +2804,202 @@ a:hover, a:focus { /* Added :focus for accessibility */
         gap: 0.75rem; /* Slightly smaller gap for very small screens */
     }
 }
+
+/* === Product Detail Page Styles === */
+#product-detail-section .section-title { /* If a main title for the section is added */
+    margin-bottom: 2.5rem;
+}
+
+.product-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column by default for mobile */
+    gap: 2rem; /* Gap between image and info on mobile, or columns on desktop */
+}
+
+@media (min-width: 768px) { /* Tablet and above */
+    .product-detail-layout {
+        grid-template-columns: 2fr 3fr; /* Two columns: image smaller than info */
+        gap: 2.5rem;
+    }
+}
+
+@media (min-width: 992px) { /* Desktop */
+    .product-detail-layout {
+        gap: 3.5rem; /* Wider gap for desktop */
+    }
+}
+
+.product-detail-image-column .product-image-gallery {
+    background-color: var(--bg-surface); /* Similar to product cards */
+    border-radius: var(--border-radius-large, 10px);
+    padding: 1rem;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    text-align: center; /* Center image if it's smaller */
+}
+
+.product-detail-image-column #main-product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-medium, 8px);
+    object-fit: cover;
+}
+
+/* Optional: Styles for thumbnails if added later
+.product-image-thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+.product-image-thumbnails img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--border-radius-small, 4px);
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+.product-image-thumbnails img:hover,
+.product-image-thumbnails img.active-thumbnail {
+    border-color: var(--accent-primary);
+}
+*/
+
+.product-detail-info-column .product-title {
+    font-size: 2.2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.product-detail-info-column .product-meta-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem; /* row and column gap */
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+}
+
+.product-detail-info-column .product-meta-info .meta-brand strong,
+.product-detail-info-column .product-meta-info .meta-availability strong {
+    color: var(--text-light);
+    font-weight: var(--font-weight-medium);
+}
+
+.product-detail-info-column .product-price {
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--accent-primary);
+    margin-bottom: 1.5rem;
+}
+
+.product-detail-info-column .section-subtitle { /* For "Description", "Caractéristiques" */
+    font-size: 1.4rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-light);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+.product-detail-info-column .product-description p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.product-detail-info-column .product-specifications ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.95rem;
+}
+
+.product-detail-info-column .product-specifications li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--bg-surface); /* Subtle separator */
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+}
+.product-detail-info-column .product-specifications li:last-child {
+    border-bottom: none;
+}
+.product-detail-info-column .product-specifications .spec-value {
+    color: var(--text-light);
+    font-weight: var(--font-weight-medium);
+}
+
+.product-detail-info-column .product-actions {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.product-detail-info-column .quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.product-detail-info-column .quantity-selector label {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 0; /* Override default p margin if label is p */
+}
+
+.product-detail-info-column .quantity-selector input[type="number"] {
+    width: 70px;
+    padding: 0.6rem 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-small, 5px);
+}
+.product-detail-info-column .quantity-selector input[type="number"]:focus {
+    border-color: var(--accent-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 221, 3, 0.2);
+}
+
+.product-detail-info-column .add-to-cart-button {
+    /* .cta-button styles are already applied */
+    padding: 0.8rem 1.8rem; /* Ensure consistent padding */
+    font-size: 1rem; /* Ensure consistent font size */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.product-detail-info-column .add-to-cart-button i {
+    margin-right: 0.2em; /* Adjust icon spacing if needed */
+}
+
+/* Responsive adjustments for product detail text */
+@media (max-width: 767px) {
+    .product-detail-info-column .product-title {
+        font-size: 1.8rem;
+    }
+    .product-detail-info-column .product-price {
+        font-size: 1.6rem;
+    }
+    .product-detail-info-column .section-subtitle {
+        font-size: 1.2rem;
+    }
+    .product-detail-info-column .product-actions {
+        flex-direction: column; /* Stack quantity and button */
+        align-items: stretch; /* Make children full width */
+    }
+    .product-detail-info-column .add-to-cart-button {
+        width: 100%;
+        justify-content: center; /* Center text and icon in button */
+    }
+}
