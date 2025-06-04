@@ -340,3 +340,92 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// === Dashboard Tab Switching ===
+document.addEventListener('DOMContentLoaded', () => {
+    const dashboardNav = document.querySelector('.dashboard-nav');
+    if (dashboardNav) {
+        const navItems = dashboardNav.querySelectorAll('.dashboard-nav-item[data-target]');
+        const contentSections = document.querySelectorAll('.dashboard-content-section');
+
+        // Function to switch tabs
+        function switchTab(targetId) {
+            // Hide all content sections
+            contentSections.forEach(section => {
+                section.classList.remove('is-active');
+            });
+
+            // Deactivate all nav items
+            navItems.forEach(item => {
+                item.classList.remove('is-active');
+            });
+
+            // Activate the target content section
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.add('is-active');
+            }
+
+            // Activate the clicked nav item
+            const activeNavItem = dashboardNav.querySelector(`.dashboard-nav-item[data-target="${targetId}"]`);
+            if (activeNavItem) {
+                activeNavItem.classList.add('is-active');
+            }
+        }
+
+        // Add click event listeners to nav items
+        navItems.forEach(item => {
+            item.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default anchor behavior (hash change)
+                const targetId = item.getAttribute('data-target');
+                if (targetId) {
+                    switchTab(targetId);
+                    // Optional: Update URL hash without page jump for bookmarkability / history
+                    // history.pushState(null, null, `#${targetId.replace('-content', '')}`);
+                }
+            });
+        });
+
+        // Optional: Handle initial tab based on URL hash (if you implement history.pushState)
+        // This allows direct linking to a specific tab.
+        // function handleInitialTab() {
+        //     if (window.location.hash) {
+        //         const initialTargetId = window.location.hash.substring(1) + "-content";
+        //         const sectionExists = document.getElementById(initialTargetId);
+        //         if (sectionExists) {
+        //             // Check if it's a valid dashboard tab target
+        //             let isValidTarget = false;
+        //             navItems.forEach(item => {
+        //                 if (item.getAttribute('data-target') === initialTargetId) {
+        //                     isValidTarget = true;
+        //                 }
+        //             });
+        //             if (isValidTarget) {
+        //                 switchTab(initialTargetId);
+        //                 return; // Exit if hash handled
+        //             }
+        //         }
+        //     }
+        //     // If no valid hash, ensure default tab is shown (overview)
+        //     // The default 'is-active' classes in HTML handle this if no hash.
+        //     // But if you want to be explicit:
+        //     const defaultActiveSection = document.querySelector('.dashboard-content-section.is-active');
+        //     if (!defaultActiveSection) { // If nothing is active (e.g. due to bad hash)
+        //          const overviewContent = document.getElementById('dashboard-overview-content');
+        //          const overviewNav = dashboardNav.querySelector('.dashboard-nav-item[data-target="dashboard-overview-content"]');
+        //          if(overviewContent) overviewContent.classList.add('is-active');
+        //          if(overviewNav) overviewNav.classList.add('is-active');
+        //     }
+        // }
+        // handleInitialTab(); // Call to set initial tab based on hash or default
+
+        // Ensure default 'is-active' classes correctly show the first tab if no other logic (like hash handling) overrides it.
+        // The HTML already sets 'is-active' on the overview tab and its content, so this should be fine.
+        // If not, explicitly activate the first one:
+        // const firstNavItem = dashboardNav.querySelector('.dashboard-nav-item[data-target]');
+        // if (firstNavItem && !dashboardNav.querySelector('.dashboard-nav-item.is-active')) {
+        //    const firstTargetId = firstNavItem.getAttribute('data-target');
+        //    switchTab(firstTargetId);
+        // }
+    }
+});

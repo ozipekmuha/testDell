@@ -1271,11 +1271,12 @@ a:hover, a:focus { /* Added :focus for accessibility */
 #main-header .header-actions {
     display: flex;
     align-items: center;
+    gap: 0.8rem; /* Ensure there's some gap between items */
 }
 
 #main-header .search-bar {
     display: flex;
-    margin-right: 1.5rem;
+    margin-right: 0.8rem; /* Adjust if current 1.5rem is too much with new icon */
 }
 
 #main-header .search-bar input[type="search"] {
@@ -2838,6 +2839,23 @@ a:hover, a:focus { /* Added :focus for accessibility */
     }
 }
 
+/* Account Icon in Header */
+#main-header .account-icon a {
+    color: var(--text-light);
+    font-size: 1.5rem; /* Similar to cart icon */
+    padding: 0.5rem; /* Add some padding for hover effect */
+    border-radius: 50%; /* Make it circular for a nice hover effect */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    display: inline-block; /* Ensure padding and transform work well */
+}
+
+#main-header .account-icon a:hover,
+#main-header .account-icon a:focus {
+    color: var(--accent-primary); /* Highlight with accent color on hover */
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle background highlight */
+    /* transform: scale(1.1); /* Optional: slight scale effect */
+}
+
 .product-detail-image-column .product-image-gallery {
     background-color: var(--bg-surface); /* Similar to product cards */
     border-radius: var(--border-radius-large, 10px);
@@ -3010,5 +3028,176 @@ a:hover, a:focus { /* Added :focus for accessibility */
     .product-detail-info-column .add-to-cart-button {
         width: 100%;
         justify-content: center; /* Center text and icon in button */
+    }
+}
+
+/* === Dashboard Page Styles === */
+#dashboard-section .page-title { /* e.g., "Mon Compte" */
+    /* text-align: center; /* Already inline styled, but can be made permanent */
+    /* margin-bottom: 2rem; /* Already inline styled */
+    font-size: 2.4rem; /* Example size */
+    color: var(--text-light);
+    font-weight: var(--font-weight-semibold);
+}
+
+.dashboard-layout {
+    display: flex;
+    flex-direction: column; /* Mobile-first: stack sidebar and content */
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.dashboard-sidebar {
+    background-color: var(--bg-surface);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-medium, 8px);
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.dashboard-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard-nav .dashboard-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--border-radius-small, 5px);
+    margin-bottom: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: var(--font-weight-medium);
+}
+
+.dashboard-nav .dashboard-nav-item i {
+    width: 20px; /* Fixed width for icons for alignment */
+    text-align: center;
+    color: var(--text-secondary); /* Default icon color */
+    transition: color 0.3s ease;
+}
+
+.dashboard-nav .dashboard-nav-item:hover {
+    background-color: rgba(255, 221, 3, 0.1); /* Light yellow hover */
+    color: var(--accent-primary-text-hover, var(--accent-primary));
+}
+.dashboard-nav .dashboard-nav-item:hover i {
+    color: var(--accent-primary);
+}
+
+.dashboard-nav .dashboard-nav-item.is-active {
+    background-color: var(--accent-primary);
+    color: var(--text-on-accent);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: 0 2px 5px rgba(255, 221, 3, 0.2);
+}
+.dashboard-nav .dashboard-nav-item.is-active i {
+    color: var(--text-on-accent);
+}
+
+
+.dashboard-content {
+    background-color: var(--bg-surface);
+    padding: 1.5rem 2rem; /* More horizontal padding for content */
+    border-radius: var(--border-radius-medium, 8px);
+    box-shadow: 0 4px 10px var(--shadow-color);
+    flex-grow: 1; /* Takes remaining space if in a flex row (desktop) */
+}
+
+.dashboard-content-section {
+    display: none; /* Hidden by default */
+    animation: fadeInSlideUp 0.5s ease-out forwards; /* Re-use existing animation */
+}
+
+.dashboard-content-section.is-active {
+    display: block; /* Show active section */
+}
+
+.dashboard-content-section h2 {
+    font-size: 1.8rem;
+    color: var(--accent-primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dashboard-content-section p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+/* Placeholder content styling (optional, for visual feedback) */
+.dashboard-content-section .placeholder-content {
+    text-align: center;
+    padding: 2rem;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius-small);
+    margin-top: 1rem;
+    color: var(--text-secondary);
+}
+.dashboard-content-section .placeholder-content i {
+    display: block;
+    margin-top: 1rem;
+}
+.dashboard-content-section .placeholder-content .cta-button.secondary {
+    margin-top: 1rem;
+}
+
+
+/* Placeholder form styling in "Détails du compte" */
+.placeholder-form .form-group {
+    margin-bottom: 1.5rem;
+}
+.placeholder-form .form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+    font-weight: var(--font-weight-medium);
+}
+.placeholder-form .form-group input[type="email"],
+.placeholder-form .form-group input[type="password"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-small, 5px);
+    font-size: 1rem;
+}
+.placeholder-form .form-group input:disabled {
+    background-color: var(--bg-surface); /* Slightly different for disabled */
+    opacity: 0.7;
+}
+.placeholder-form .form-group input[type="email"]:focus,
+.placeholder-form .form-group input[type="password"]:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(255, 221, 3, 0.2);
+}
+.placeholder-form .cta-button {
+    margin-top: 0.5rem; /* Align with last form group's bottom margin */
+}
+
+
+/* Desktop layout for dashboard */
+@media (min-width: 992px) {
+    .dashboard-layout {
+        flex-direction: row; /* Sidebar and content side-by-side */
+        align-items: flex-start; /* Align items to the top */
+        gap: 2.5rem;
+    }
+    .dashboard-sidebar {
+        flex: 0 0 280px; /* Fixed width for sidebar, no grow, no shrink */
+    }
+    .dashboard-content {
+        flex: 1; /* Content takes remaining space */
+        padding: 2rem 2.5rem;
+    }
+    .dashboard-content-section h2 {
+        font-size: 2rem;
     }
 }

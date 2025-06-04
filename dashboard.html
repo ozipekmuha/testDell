@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détails du Produit - Ouipneu.fr</title>
+    <title>Mon Compte - Ouipneu.fr</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -38,6 +38,7 @@
                 <div class="cart-icon">
                     <a href="#cart" aria-label="Panier"><i class="fas fa-shopping-cart"></i><span>0</span></a>
                 </div>
+                <!-- Account link will be added here later -->
                 <button id="hamburger-button" class="hamburger-button" aria-label="Ouvrir le menu" aria-expanded="false">
                     <span class="hamburger-box">
                         <span class="hamburger-inner"></span>
@@ -48,57 +49,73 @@
     </header>
 
     <main class="site-main-content">
-        <section id="product-detail-section" class="section-padding">
+        <section id="dashboard-section" class="section-padding">
             <div class="container">
-                <div class="product-detail-layout">
-                    <!-- Column 1: Product Image -->
-                    <div class="product-detail-image-column">
-                        <div class="product-image-gallery">
-                            <img src="https://via.placeholder.com/500x400.png?text=Pneu+Exemple" alt="Pneu Exemple" id="main-product-image">
-                            <!-- Optional: Thumbnails for gallery could go here -->
-                        </div>
-                    </div>
-
-                    <!-- Column 2: Product Info -->
-                    <div class="product-detail-info-column">
-                        <h1 class="product-title" id="product-detail-name">Nom du Pneu Exemple</h1>
-
-                        <div class="product-meta-info">
-                            <span class="meta-brand">Marque: <strong id="product-detail-brand">Marque Exemple</strong></span>
-                            <span class="meta-availability">Disponibilité: <strong id="product-detail-availability">En Stock</strong></span>
-                        </div>
-
-                        <p class="product-price" id="product-detail-price">€123.45</p>
-
-                        <div class="product-description">
-                            <h2 class="section-subtitle">Description</h2>
-                            <p id="product-detail-description">
-                                Ceci est une description détaillée du pneu exemple. Il offre une excellente adhérence sur sol mouillé et une longévité remarquable. Conçu pour les conducteurs exigeants, ce pneu combine sécurité et performance. Ses rainures optimisées assurent une évacuation efficace de l'eau, réduisant les risques d'aquaplaning.
-                            </p>
-                        </div>
-
-                        <div class="product-specifications">
-                            <h2 class="section-subtitle">Caractéristiques Techniques</h2>
-                            <ul id="product-detail-specs-list">
-                                <li>Dimension: <strong class="spec-value">205/55 R16</strong></li>
-                                <li>Type: <strong class="spec-value">Été</strong></li>
-                                <li>Indice de charge: <strong class="spec-value">91</strong></li>
-                                <li>Indice de vitesse: <strong class="spec-value">V</strong></li>
-                                <li>Runflat: <strong class="spec-value">Non</strong></li>
-                                <li>Renforcé (XL): <strong class="spec-value">Oui</strong></li>
+                <h1 class="page-title" style="text-align: center; margin-bottom: 2rem;">Mon Compte</h1>
+                <div class="dashboard-layout">
+                    <aside class="dashboard-sidebar">
+                        <nav class="dashboard-nav">
+                            <ul>
+                                <li><a href="#dashboard-overview" class="dashboard-nav-item is-active" data-target="dashboard-overview-content"><i class="fas fa-tachometer-alt"></i> Tableau de Bord</a></li>
+                                <li><a href="#dashboard-orders" class="dashboard-nav-item" data-target="dashboard-orders-content"><i class="fas fa-box"></i> Mes Commandes</a></li>
+                                <li><a href="#dashboard-addresses" class="dashboard-nav-item" data-target="dashboard-addresses-content"><i class="fas fa-map-marker-alt"></i> Mes Adresses</a></li>
+                                <li><a href="#dashboard-account" class="dashboard-nav-item" data-target="dashboard-account-content"><i class="fas fa-user-cog"></i> Détails du Compte</a></li>
+                                <li><a href="#logout" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
                             </ul>
+                        </nav>
+                    </aside>
+                    <section class="dashboard-content">
+                        <!-- Initial content section (e.g., Overview) -->
+                        <div id="dashboard-overview-content" class="dashboard-content-section is-active">
+                            <h2>Tableau de Bord</h2>
+                            <p>Bienvenue sur votre tableau de bord. D'ici, vous pouvez gérer vos commandes, adresses et détails de compte.</p>
+                        </div>
+                        <div id="dashboard-orders-content" class="dashboard-content-section">
+                            <h2>Mes Commandes</h2>
+                            <p>Historique de vos commandes passées.</p>
+                            <!-- Placeholder for order list -->
+                            <div class="placeholder-content">
+                                <p>Aucune commande pour le moment.</p>
+                                <i class="fas fa-receipt fa-3x" style="color: var(--border-color);"></i>
+                            </div>
                         </div>
 
-                        <div class="product-actions">
-                            <div class="quantity-selector">
-                                <label for="quantity">Quantité:</label>
-                                <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                        <div id="dashboard-addresses-content" class="dashboard-content-section">
+                            <h2>Mes Adresses</h2>
+                            <p>Gérez vos adresses de livraison et de facturation.</p>
+                            <!-- Placeholder for address list / forms -->
+                            <div class="placeholder-content">
+                                <p>Vous n'avez pas encore ajouté d'adresse.</p>
+                                <button type="button" class="cta-button secondary">Ajouter une nouvelle adresse</button>
+                                <i class="fas fa-address-book fa-3x" style="color: var(--border-color); margin-top:1rem;"></i>
                             </div>
-                            <button type="button" class="cta-button add-to-cart-button">
-                                <i class="fas fa-shopping-cart"></i> Ajouter au Panier
-                            </button>
                         </div>
-                    </div>
+
+                        <div id="dashboard-account-content" class="dashboard-content-section">
+                            <h2>Détails du Compte</h2>
+                            <p>Modifiez vos informations personnelles et votre mot de passe.</p>
+                            <!-- Placeholder for account forms -->
+                            <form class="placeholder-form">
+                                <div class="form-group">
+                                    <label for="dash-email">Adresse Email</label>
+                                    <input type="email" id="dash-email" value="utilisateur@example.com" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dash-current-password">Mot de passe actuel</label>
+                                    <input type="password" id="dash-current-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dash-new-password">Nouveau mot de passe</label>
+                                    <input type="password" id="dash-new-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dash-confirm-password">Confirmer le nouveau mot de passe</label>
+                                    <input type="password" id="dash-confirm-password">
+                                </div>
+                                <button type="submit" class="cta-button">Mettre à jour</button>
+                            </form>
+                        </div>
+                    </section>
                 </div>
             </div>
         </section>
