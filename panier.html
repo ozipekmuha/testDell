@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détails du Produit - Ouipneu.fr</title>
+    <title>Mon Panier - Ouipneu.fr</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -32,7 +32,7 @@
                     <input type="search" placeholder="Rechercher des pneus...">
                     <button type="submit" aria-label="Rechercher"><i class="fas fa-search"></i></button>
                 </form>
-                <div class="account-icon"> <!-- New div for account icon -->
+                <div class="account-icon">
                     <a href="dashboard.html" aria-label="Mon Compte"><i class="fas fa-user-circle"></i></a>
                 </div>
                 <div class="cart-icon">
@@ -48,58 +48,87 @@
     </header>
 
     <main class="site-main-content">
-        <section id="product-detail-section" class="section-padding">
+        <section id="cart-section" class="section-padding">
             <div class="container">
-                <div class="product-detail-layout">
-                    <!-- Column 1: Product Image -->
-                    <div class="product-detail-image-column">
-                        <div class="product-image-gallery">
-                            <img src="https://via.placeholder.com/500x400.png?text=Pneu+Exemple" alt="Pneu Exemple" id="main-product-image">
-                            <!-- Optional: Thumbnails for gallery could go here -->
-                        </div>
-                    </div>
-
-                    <!-- Column 2: Product Info -->
-                    <div class="product-detail-info-column">
-                        <h1 class="product-title" id="product-detail-name">Nom du Pneu Exemple</h1>
-
-                        <div class="product-meta-info">
-                            <span class="meta-brand">Marque: <strong id="product-detail-brand">Marque Exemple</strong></span>
-                            <span class="meta-availability">Disponibilité: <strong id="product-detail-availability">En Stock</strong></span>
-                        </div>
-
-                        <p class="product-price" id="product-detail-price">€123.45</p>
-
-                        <div class="product-description">
-                            <h2 class="section-subtitle">Description</h2>
-                            <p id="product-detail-description">
-                                Ceci est une description détaillée du pneu exemple. Il offre une excellente adhérence sur sol mouillé et une longévité remarquable. Conçu pour les conducteurs exigeants, ce pneu combine sécurité et performance. Ses rainures optimisées assurent une évacuation efficace de l'eau, réduisant les risques d'aquaplaning.
-                            </p>
-                        </div>
-
-                        <div class="product-specifications">
-                            <h2 class="section-subtitle">Caractéristiques Techniques</h2>
-                            <ul id="product-detail-specs-list">
-                                <li>Dimension: <strong class="spec-value">205/55 R16</strong></li>
-                                <li>Type: <strong class="spec-value">Été</strong></li>
-                                <li>Indice de charge: <strong class="spec-value">91</strong></li>
-                                <li>Indice de vitesse: <strong class="spec-value">V</strong></li>
-                                <li>Runflat: <strong class="spec-value">Non</strong></li>
-                                <li>Renforcé (XL): <strong class="spec-value">Oui</strong></li>
-                            </ul>
-                        </div>
-
-                        <div class="product-actions">
-                            <div class="quantity-selector">
-                                <label for="quantity">Quantité:</label>
-                                <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                <h1 class="page-title" style="text-align: center; margin-bottom: 2rem;">Mon Panier</h1>
+                <div class="cart-layout">
+                    <div class="cart-items-column">
+                        <!-- Cart Item 1: Placeholder -->
+                        <div class="cart-item">
+                            <div class="cart-item-image">
+                                <img src="https://via.placeholder.com/100x80.png?text=Pneu+A" alt="Pneu Exemple A">
                             </div>
-                            <button type="button" class="cta-button add-to-cart-button">
-                                <i class="fas fa-shopping-cart"></i> Ajouter au Panier
-                            </button>
+                            <div class="cart-item-details">
+                                <h3 class="cart-item-name">Pneu Michelin Primacy 4</h3>
+                                <p class="cart-item-specs">205/55 R16</p>
+                                <p class="cart-item-price-unit">Prix Unitaire: €95.00</p>
+                            </div>
+                            <div class="cart-item-quantity">
+                                <label for="qty-item-1" class="sr-only">Quantité</label>
+                                <input type="number" id="qty-item-1" value="1" min="1" max="10" aria-label="Quantité">
+                                <!-- +/- buttons can be added here later with JS -->
+                            </div>
+                            <div class="cart-item-total-price">
+                                <p>€95.00</p>
+                            </div>
+                            <div class="cart-item-remove">
+                                <button type="button" class="remove-item-button" aria-label="Supprimer l'article">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </div>
+
+                        <!-- Cart Item 2: Placeholder -->
+                        <div class="cart-item">
+                            <div class="cart-item-image">
+                                <img src="https://via.placeholder.com/100x80.png?text=Pneu+B" alt="Pneu Exemple B">
+                            </div>
+                            <div class="cart-item-details">
+                                <h3 class="cart-item-name">Continental EcoContact 6</h3>
+                                <p class="cart-item-specs">195/65 R15</p>
+                                <p class="cart-item-price-unit">Prix Unitaire: €85.00</p>
+                            </div>
+                            <div class="cart-item-quantity">
+                                <label for="qty-item-2" class="sr-only">Quantité</label>
+                                <input type="number" id="qty-item-2" value="2" min="1" max="10" aria-label="Quantité">
+                            </div>
+                            <div class="cart-item-total-price">
+                                <p>€170.00</p>
+                            </div>
+                            <div class="cart-item-remove">
+                                <button type="button" class="remove-item-button" aria-label="Supprimer l'article">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="cart-actions-bar">
+                            <a href="produits.html" class="cta-button secondary">Continuer les achats</a>
+                            <button type="button" class="cta-button danger clear-cart-button">Vider le panier</button>
+                        </div>
+
+                    </div> <!-- end cart-items-column -->
+
+                    <div class="cart-summary-column">
+                        <div class="cart-summary-box">
+                            <h2>Récapitulatif du Panier</h2>
+                            <div class="summary-row">
+                                <span>Sous-total:</span>
+                                <span id="cart-subtotal">€265.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Livraison:</span>
+                                <span id="cart-shipping">Calculée à l'étape suivante</span>
+                            </div>
+                            <hr class="summary-divider">
+                            <div class="summary-row total-row">
+                                <span>Total:</span>
+                                <span id="cart-total">€265.00</span>
+                            </div>
+                            <button type="button" class="cta-button checkout-button">Passer la commande</button>
+                        </div>
+                    </div> <!-- end cart-summary-column -->
+                </div> <!-- end cart-layout -->
             </div>
         </section>
     </main>
