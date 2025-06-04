@@ -339,6 +339,86 @@ document.addEventListener('DOMContentLoaded', () => {
             // console.warn("Product filtering not initialized: No product data or essential elements missing.");
         }
     }
+
+    // === Address Modal JS ===
+    const addressModalOverlay = document.getElementById('address-modal');
+    const openModalButton = document.querySelector('#dashboard-addresses-content .placeholder-content button.cta-button.secondary'); // Button "Ajouter une nouvelle adresse"
+    // Later, we might have multiple open buttons (e.g., for editing)
+    // const openModalButtons = document.querySelectorAll('.open-address-modal-button');
+
+    const closeModalButton = addressModalOverlay ? addressModalOverlay.querySelector('.modal-close-button') : null;
+    const cancelModalButton = addressModalOverlay ? addressModalOverlay.querySelector('.modal-cancel-button') : null;
+    const saveModalButton = addressModalOverlay ? addressModalOverlay.querySelector('.modal-save-button') : null; // For later use
+    const addressForm = document.getElementById('address-form');
+
+    function openModal() {
+        if (addressModalOverlay) {
+            addressModalOverlay.style.display = 'flex'; // Make it part of layout for transition
+            setTimeout(() => { // Timeout to allow display property to take effect before transition starts
+                addressModalOverlay.classList.add('is-visible');
+            }, 10); // Small delay
+        }
+    }
+
+    function closeModal() {
+        if (addressModalOverlay) {
+            addressModalOverlay.classList.remove('is-visible');
+            // Wait for opacity transition to finish before setting display: none
+            addressModalOverlay.addEventListener('transitionend', function handleTransitionEnd(event) {
+                if (event.propertyName === 'opacity' && !addressModalOverlay.classList.contains('is-visible')) {
+                    addressModalOverlay.style.display = 'none';
+                    addressModalOverlay.removeEventListener('transitionend', handleTransitionEnd); // Clean up listener
+                }
+            });
+            // As a fallback if transitionend doesn't fire (e.g. if transitions are disabled)
+            setTimeout(() => {
+                if (!addressModalOverlay.classList.contains('is-visible')) {
+                     addressModalOverlay.style.display = 'none';
+                }
+            }, 350); // Should match or exceed CSS transition duration for opacity
+        }
+    }
+
+    if (openModalButton && addressModalOverlay) {
+        openModalButton.addEventListener('click', () => {
+            // Reset form if needed, or set modal title for "Add"
+            const modalTitle = addressModalOverlay.querySelector('#modal-title');
+            if (modalTitle) modalTitle.textContent = 'Ajouter une nouvelle adresse';
+            if (addressForm) addressForm.reset(); // Clear form for new address
+            openModal();
+        });
+    }
+
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', closeModal);
+    }
+
+    if (cancelModalButton) {
+        cancelModalButton.addEventListener('click', closeModal);
+    }
+
+    if (addressModalOverlay) {
+        // Close modal if overlay (outside modal-container) is clicked
+        addressModalOverlay.addEventListener('click', (event) => {
+            if (event.target === addressModalOverlay) { // Check if the click is on the overlay itself
+                closeModal();
+            }
+        });
+    }
+
+    // Handle form submission (placeholder for now)
+    if (addressForm) {
+        addressForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            // In a real app, you'd collect form data and send it to a server
+            // const formData = new FormData(addressForm);
+            // for (let [key, value] of formData.entries()) {
+            //     console.log(key, value);
+            // }
+            alert('Adresse enregistrée (simulation) !'); // Placeholder
+            closeModal();
+        });
+    }
 });
 
 // === Dashboard Tab Switching ===

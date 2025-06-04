@@ -95,27 +95,111 @@
                             <h2>Détails du Compte</h2>
                             <p>Modifiez vos informations personnelles et votre mot de passe.</p>
                             <!-- Placeholder for account forms -->
-                            <form class="placeholder-form">
-                                <div class="form-group">
-                                    <label for="dash-email">Adresse Email</label>
-                                    <input type="email" id="dash-email" value="utilisateur@example.com" disabled>
+                            <form class="placeholder-form account-details-form"> <!-- Added a more specific class -->
+                                <div class="form-row"> <!-- New: for side-by-side layout on desktop -->
+                                    <div class="form-group">
+                                        <label for="dash-firstname">Prénom</label>
+                                        <input type="text" id="dash-firstname" name="firstname" value="Jean" placeholder="Votre prénom">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dash-lastname">Nom</label>
+                                        <input type="text" id="dash-lastname" name="lastname" value="Dupont" placeholder="Votre nom">
+                                    </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="dash-email">Adresse Email</label>
+                                    <input type="email" id="dash-email" name="email" value="utilisateur@example.com" disabled>
+                                </div>
+                                <hr class="form-divider"> <!-- Optional divider -->
+                                <h3 class="form-section-title">Changer le mot de passe</h3>
+                                <div class="form-group">
                                     <label for="dash-current-password">Mot de passe actuel</label>
-                                    <input type="password" id="dash-current-password">
+                                    <input type="password" id="dash-current-password" name="current_password" placeholder="Laisser vide pour ne pas changer">
                                 </div>
                                 <div class="form-group">
                                     <label for="dash-new-password">Nouveau mot de passe</label>
-                                    <input type="password" id="dash-new-password">
+                                    <input type="password" id="dash-new-password" name="new_password" placeholder="Laisser vide pour ne pas changer">
                                 </div>
                                 <div class="form-group">
                                     <label for="dash-confirm-password">Confirmer le nouveau mot de passe</label>
-                                    <input type="password" id="dash-confirm-password">
+                                    <input type="password" id="dash-confirm-password" name="confirm_password" placeholder="Laisser vide pour ne pas changer">
                                 </div>
-                                <button type="submit" class="cta-button">Mettre à jour</button>
+                                <button type="submit" class="cta-button">Mettre à jour les informations</button>
                             </form>
                         </div>
                     </section>
+                </div> <!-- Closing dashboard-layout -->
+
+                <!-- Address Modal -->
+                <div id="address-modal" class="modal-overlay" style="display: none;">
+                    <div class="modal-container">
+                        <header class="modal-header">
+                            <h3 id="modal-title">Ajouter une nouvelle adresse</h3>
+                            <button type="button" class="modal-close-button" aria-label="Fermer">&times;</button>
+                        </header>
+                        <section class="modal-body">
+                            <form id="address-form" class="address-form">
+                                <div class="form-group">
+                                    <label for="address-nickname">Nom de l'adresse (ex: Maison, Travail)</label>
+                                    <input type="text" id="address-nickname" name="nickname" placeholder="Ex: Domicile">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="address-firstname">Prénom</label>
+                                        <input type="text" id="address-firstname" name="firstname" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address-lastname">Nom</label>
+                                        <input type="text" id="address-lastname" name="lastname" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-street">Adresse (N° et rue)</label>
+                                    <input type="text" id="address-street" name="street" required placeholder="Ex: 123 Rue de la Paix">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-complement">Complément d'adresse (Appartement, étage...)</label>
+                                    <input type="text" id="address-complement" name="complement" placeholder="Ex: Apt 4B, Bat C">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="address-zipcode">Code Postal</label>
+                                        <input type="text" id="address-zipcode" name="zipcode" required placeholder="Ex: 75001">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address-city">Ville</label>
+                                        <input type="text" id="address-city" name="city" required placeholder="Ex: Paris">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-country">Pays</label>
+                                    <select id="address-country" name="country" required>
+                                        <option value="FR">France</option>
+                                        <option value="BE">Belgique</option>
+                                        <option value="CH">Suisse</option>
+                                        <option value="LU">Luxembourg</option>
+                                        <!-- Add more countries as needed -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address-phone">Numéro de téléphone</label>
+                                    <input type="tel" id="address-phone" name="phone" placeholder="Pour la livraison">
+                                </div>
+                                 <div class="form-group">
+                                    <input type="checkbox" id="address-is-default-shipping" name="is_default_shipping">
+                                    <label for="address-is-default-shipping" class="checkbox-label">Faire de cette adresse mon adresse de livraison par défaut</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" id="address-is-default-billing" name="is_default_billing">
+                                    <label for="address-is-default-billing" class="checkbox-label">Faire de cette adresse mon adresse de facturation par défaut</label>
+                                </div>
+                            </form>
+                        </section>
+                        <footer class="modal-footer">
+                            <button type="button" class="cta-button secondary modal-cancel-button">Annuler</button>
+                            <button type="submit" form="address-form" class="cta-button modal-save-button">Enregistrer</button>
+                        </footer>
+                    </div>
                 </div>
             </div>
         </section>

@@ -1307,6 +1307,22 @@ a:hover, a:focus { /* Added :focus for accessibility */
     background-color: var(--accent-primary-darker);
 }
 
+#main-header .account-icon a {
+    color: var(--text-light);
+    font-size: 1.5rem; /* Similar to cart icon */
+    padding: 0.5rem; /* Add some padding for hover effect */
+    border-radius: 50%; /* Make it circular for a nice hover effect */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    display: inline-block; /* Ensure padding and transform work well */
+}
+
+#main-header .account-icon a:hover,
+#main-header .account-icon a:focus {
+    color: var(--accent-primary); /* Highlight with accent color on hover */
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle background highlight */
+    /* transform: scale(1.1); /* Optional: slight scale effect */
+}
+
 #main-header .cart-icon a {
     color: var(--text-light);
     font-size: 1.5rem;
@@ -3158,6 +3174,7 @@ a:hover, a:focus { /* Added :focus for accessibility */
     margin-bottom: 0.4rem;
     font-weight: var(--font-weight-medium);
 }
+.placeholder-form .form-group input[type="text"],
 .placeholder-form .form-group input[type="email"],
 .placeholder-form .form-group input[type="password"] {
     width: 100%;
@@ -3167,11 +3184,13 @@ a:hover, a:focus { /* Added :focus for accessibility */
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-small, 5px);
     font-size: 1rem;
+    box-sizing: border-box; /* Added */
 }
 .placeholder-form .form-group input:disabled {
     background-color: var(--bg-surface); /* Slightly different for disabled */
     opacity: 0.7;
 }
+.placeholder-form .form-group input[type="text"]:focus,
 .placeholder-form .form-group input[type="email"]:focus,
 .placeholder-form .form-group input[type="password"]:focus {
     outline: none;
@@ -3201,3 +3220,251 @@ a:hover, a:focus { /* Added :focus for accessibility */
         font-size: 2rem;
     }
 }
+
+/* === Dashboard Account Details Form Enhancements === */
+.account-details-form .form-row {
+    display: flex;
+    flex-direction: column; /* Stack on mobile by default */
+    gap: 1.5rem; /* Same as .form-group margin-bottom */
+}
+
+@media (min-width: 768px) { /* Tablet and above */
+    .account-details-form .form-row {
+        flex-direction: row; /* Side-by-side on larger screens */
+    }
+    .account-details-form .form-row .form-group {
+        flex: 1; /* Each group takes equal width */
+        margin-bottom: 0; /* Remove bottom margin as gap handles it */
+    }
+}
+/* Ensure the next form-group after .form-row has its margin-top or the .form-row has margin-bottom */
+.account-details-form .form-row {
+    margin-bottom: 1.5rem;
+}
+
+
+.account-details-form .form-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 2rem 0;
+}
+
+.account-details-form .form-section-title {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 1.5rem;
+    margin-top: 0; /* Reset top margin if it follows a divider */
+}
+
+/* Adjust existing placeholder form input styling if needed */
+/* REMOVED REDUNDANT BLOCK
+.placeholder-form .form-group input[type="text"],
+.placeholder-form .form-group input[type="email"],
+.placeholder-form .form-group input[type="password"] {
+    box-sizing: border-box;
+}
+*/
+/* === Address Modal Styles === */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65); /* Darker overlay */
+    display: flex; /* Used to center modal-container */
+    align-items: center;
+    justify-content: center;
+    z-index: 2000; /* Ensure it's above other content */
+    opacity: 0; /* Initially hidden for transition */
+    visibility: hidden; /* Initially hidden for transition */
+    transition: opacity 0.3s ease, visibility 0s 0.3s linear; /* Delay visibility transition */
+}
+
+.modal-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0s 0s linear;
+}
+
+.modal-container {
+    background-color: var(--bg-surface);
+    padding: 2rem;
+    border-radius: var(--border-radius-large, 10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 650px; /* Max width for the modal */
+    max-height: 90vh; /* Max height */
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    opacity: 0; /* For fade-in effect with scale */
+    visibility: hidden;
+}
+
+.modal-overlay.is-visible .modal-container {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+    transition: transform 0.3s ease, opacity 0.2s ease; /* Slightly faster opacity */
+}
+
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header #modal-title {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    font-weight: var(--font-weight-semibold);
+    margin: 0;
+}
+
+.modal-close-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s ease;
+}
+.modal-close-button:hover {
+    color: var(--text-light);
+}
+
+.modal-body {
+    overflow-y: auto; /* Make modal body scrollable if content exceeds max-height */
+    padding-right: 0.5rem; /* Space for scrollbar to prevent content shift */
+    /* margin-right: -0.5rem; /* This might not be needed if scrollbar styling is consistent */
+}
+
+/* Address form specific styling inside modal */
+.address-form .form-group {
+    margin-bottom: 1.25rem;
+}
+.address-form .form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+    font-weight: var(--font-weight-medium);
+}
+/* Ensure checkbox labels are aligned nicely */
+.address-form .form-group input[type="checkbox"] {
+    margin-right: 0.5rem;
+    vertical-align: middle; /* Align checkbox with label text */
+    /* Custom checkbox styles can be applied here if needed, or use existing .checkbox-option if structure matches */
+    width: auto; /* Override general input width:100% if it applies to checkboxes */
+}
+.address-form .form-group .checkbox-label { /* Style for the label text next to a checkbox */
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-regular);
+    vertical-align: middle;
+    display: inline; /* Keep it inline with the checkbox */
+    margin-bottom: 0; /* Override general label margin */
+}
+
+
+.address-form .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+@media (min-width: 576px) { /* Apply side-by-side for small screens and up inside modal */
+    .address-form .form-row {
+        flex-direction: row;
+    }
+    .address-form .form-row .form-group {
+        flex: 1;
+        margin-bottom: 0; /* gap handles spacing */
+    }
+}
+.address-form .form-row { /* Margin for the whole row if it's not the last element */
+    margin-bottom: 1.25rem;
+}
+
+
+.address-form input[type="text"],
+.address-form input[type="email"], /* If email was used */
+.address-form input[type="tel"],
+.address-form select {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-small, 5px);
+    font-size: 0.95rem;
+    box-sizing: border-box;
+}
+.address-form input[type="text"]:focus,
+.address-form input[type="email"]:focus,
+.address-form input[type="tel"]:focus,
+.address-form select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(255, 221, 3, 0.2);
+}
+.address-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23e0e0e0' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 0.9em;
+    cursor: pointer;
+}
+
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.modal-footer .cta-button {
+    min-width: 100px; /* Give buttons a min width */
+}
+.modal-footer .cta-button.secondary { /* Specific styling for cancel in modal */
+    background-color: var(--bg-surface-accent, #3a3a3a);
+    border-color: var(--border-color);
+    color: var(--text-light);
+}
+.modal-footer .cta-button.secondary:hover {
+    background-color: var(--border-color);
+}
+
+/* Responsive adjustments for modal on very small screens if needed */
+@media (max-width: 480px) {
+    .modal-container {
+        padding: 1.5rem;
+        width: 95%;
+    }
+    .modal-header #modal-title {
+        font-size: 1.3rem;
+    }
+    .modal-footer {
+        flex-direction: column-reverse; /* Stack buttons on very small screens */
+    }
+    .modal-footer .cta-button {
+        width: 100%;
+    }
+}
+
+[end of css/style.css]
