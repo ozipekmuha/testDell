@@ -131,12 +131,15 @@
    border-color: var(--accent-primary);
 }
 
+/*
 /* === Filter UI Enhancements - Overrides and Additions (Subtask 24) === */
 
 /* Ensure .product-filters-container keeps its glassmorphism but no text-align center */
+/*
 .product-filters-container {
     /* background-color, backdrop-filter, border, padding, border-radius, margin-bottom, box-shadow should be as set in Subtask 23 */
     /* text-align: initial; /* Explicitly remove center alignment if it was inherited or set */
+/*
 }
 
 #product-filters-form {
@@ -144,6 +147,7 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem 2rem;
     align-items: start; /* Primary change: align to start */
+/*
 }
 
 .filter-group {
@@ -151,16 +155,20 @@
     flex-direction: column;
     gap: 0.5rem;
     /* min-width: 200px; /* Safeguard, but grid minmax is primary */
+/*
 }
 
 #product-filters-form label { /* General label styling within the form */
+/*
     font-size: 0.9rem;
     color: var(--text-secondary);
     margin-bottom: 0.1rem;
     font-weight: var(--font-weight-medium);
 }
+*/
 
 /* Tire Size Group - Ensuring specific internal layout */
+/*
 .filter-group.tire-size-group {
     /* display: flex; /* Already a flex item from .filter-group if this is nested, but it's a grid item itself */
     /* flex-direction: column; /* Label above row of inputs */
@@ -169,12 +177,14 @@
     /* border: 1px solid var(--border-color); */
     /* padding: 1rem; */
     /* border-radius: var(--border-radius-medium); */
+/*
 }
 
 .filter-group.tire-size-group > label { /* Style for the "Dimensions du Pneu:" label */
     /* font-weight: var(--font-weight-semibold); /* Already handled by general label style if specific enough */
     /* color: var(--text-light); */
     /* margin-bottom: 0.5rem; */
+/*
 }
 
 .tire-size-group .tire-size-inputs-row {
@@ -185,42 +195,62 @@
 }
 
 .tire-size-group .tire-size-inputs-row .filter-group { /* Sub-groups for width/ratio/diameter */
+/*
      flex-grow: 1;
      min-width: 80px;
      /* Reset sub-group specific styling from main .filter-group if any conflicts */
+/*
      padding: 0; border: none; background: none; box-shadow: none;
 }
+*/
 
 /* Select element styling (ensure it's not overridden) */
+/*
 #product-filters-form select {
     /* background-color, color, border, padding, border-radius, font-size, min-width, appearance, background-image etc. should be as set in Subtask 23 */
+/*
 }
 #product-filters-form select:focus {
     /* outline, border-color, box-shadow should be as set in Subtask 23 */
+/*
 }
 .filter-group.tire-size-group select { /* Specific for tire size selects */
+/*
     min-width: 80px; /* Already defined, ensuring it stays */
+/*
     flex-grow: 1; /* Allow them to take space */
+/*
 }
-
+*/
 
 /* Filter Actions */
+/*
 .filter-actions {
     grid-column: 1 / -1; /* Span full width */
+/*
     text-align: right;
     margin-top: 1rem; /* Add space if it's on a new line */
+/*
     align-self: flex-end; /* Ensure it aligns to bottom of grid row if others are taller */
+/*
 }
+*/
 
 /* Reset Button - ensuring .secondary class is effective or use ID for specificity */
+/*
 #reset-filters-button.cta-button.secondary, /* If .secondary is the primary way */
+/*
 #reset-filters-button.cta-button { /* Fallback if .secondary isn't strong enough or not used */
+/*
     background-color: var(--bg-surface-accent, #3a3a3a); /* Define --bg-surface-accent or use fallback */
+/*
     color: var(--text-light);
     border: 1px solid var(--border-color);
     padding: 0.7rem 1.2rem; /* Consistent padding */
+/*
     font-size: 0.95rem;
     text-shadow: none; /* Remove any inherited text shadow from primary CTA */
+/*
 }
 #reset-filters-button.cta-button.secondary:hover,
 #reset-filters-button.cta-button:hover {
@@ -229,22 +259,29 @@
     border-color: var(--accent-primary);
     box-shadow: 0 0 0 2px rgba(255, 221, 3, 0.2);
 }
+*/
 
 /* Responsive for Filters (refinements based on Subtask 24 prompt) */
+/*
 @media (max-width: 992px) { /* Tablet */
+/*
     .tire-size-group .tire-size-inputs-row .filter-group {
         min-width: 70px; /* As per subtask 23 */
+/*
     }
 }
 
 @media (max-width: 576px) { /* Small mobile */
+/*
     #product-filters-form {
         /* grid-template-columns: 1fr; /* Already set */
         /* gap: 1rem; /* Already set */
+/*
     }
     .tire-size-group .tire-size-inputs-row {
         flex-direction: column;
         gap: 1rem; /* Increased from 0.5rem for stacked selects */
+/*
         align-items: stretch;
     }
     .tire-size-group .tire-size-inputs-row .filter-group {
@@ -254,41 +291,55 @@
         text-align: center;
     }
     #reset-filters-button.cta-button.secondary, /* Ensure full width for mobile */
+/*
     #reset-filters-button.cta-button {
         width: 100%;
         padding-top: 0.8rem;
         padding-bottom: 0.8rem;
     }
 }
+*/
 
+
+/*
 /* === Product Filter UI Enhancements (Subtask 24) === */
 
 /* Refined Filter Form Styling */
+/*
 #product-filters-form {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem 2rem; /* row-gap column-gap */
+/*
     align-items: start; /* Changed from flex-end to start */
+/*
 }
+*/
 
 /* Ensure .filter-group itself doesn't have conflicting width/max-width */
+/*
 .filter-group {
     /* display: flex; flex-direction: column; gap: 0.4rem; /* Already styled */
     /* min-width: 200px; /* Generally handled by grid's minmax, but can be a safeguard */
+/*
 }
+*/
 
 /* Refined .tire-size-group and its internal row for better responsiveness */
+/*
 .filter-group.tire-size-group {
     /* display: flex; flex-direction: column; gap: 0.5rem; /* From previous subtask, ensure label is above row */
     /* Optional: Border/padding for visual grouping can be kept or removed based on overall look */
     /* border: 1px solid var(--border-color); */
     /* padding: 1rem; */
     /* border-radius: var(--border-radius-medium); */
+/*
 }
 
 .tire-size-group .tire-size-inputs-row {
     display: flex;
     flex-wrap: wrap; /* Allow wrapping on smaller viewports before full stacking */
+/*
     align-items: flex-end;
     gap: 0.75rem;
 }
@@ -296,46 +347,61 @@
 .tire-size-group .tire-size-inputs-row .filter-group {
      flex-grow: 1;
      min-width: 80px; /* Min width for individual size inputs */
+/*
 }
+*/
 
 /* General Label and Select Styling (already defined, ensure they are not overridden by mistake) */
 /* #product-filters-form label { ... } */
 /* #product-filters-form select { ... } */
 
 /* Filter Actions positioning */
+/*
 .filter-actions {
     grid-column: 1 / -1; /* Span full width of the grid */
+/*
     text-align: right;
     margin-top: 1rem; /* Add some space if it's on a new line */
     /* If it should always be at the end of the last "natural" row: */
     /* justify-self: end; align-self: end; grid-column: auto; */
+/*
 }
+*/
 
 /* Responsive adjustments for filter elements */
+/*
 @media (max-width: 992px) { /* Tablet - ensure tire size inputs might wrap but stay in a row if possible */
+/*
     .filter-group.tire-size-group {
         /* Potentially make it span full width if other filters are also full width */
         /* grid-column: 1 / -1; */
+/*
     }
     .tire-size-group .tire-size-inputs-row {
         /* flex-wrap: wrap; /* Already set, good for allowing wrapping */
+/*
     }
      .tire-size-group .tire-size-inputs-row .filter-group {
         min-width: 70px; /* Slightly smaller min-width for tablet */
+/*
     }
 }
 
 
 @media (max-width: 576px) { /* Small mobile - stack tire size inputs */
+/*
     #product-filters-form {
         /* gap: 1rem; /* Already set in previous responsive block */
+/*
     }
     .filter-group.tire-size-group {
         /* padding: 0; border: none; background: none; /* Already set */
+/*
     }
     .tire-size-group .tire-size-inputs-row {
         flex-direction: column;
         gap: 1rem; /* Adjust gap for stacked selects */
+/*
         align-items: stretch;
     }
     .tire-size-group .tire-size-inputs-row .filter-group {
@@ -344,9 +410,12 @@
     .filter-actions {
         text-align: center;
         /* margin-top: 0.5rem; /* Already set */
+/*
     }
     /* #reset-filters-button (and its classes) already has width:100% from previous block */
+/*
 }
+*/
 
 /* Utility class for hiding products via JS */
 .product-hidden {
@@ -355,41 +424,58 @@
 
 /* === Styling for produits.html specific elements === */
 
+/*
 /* Product Filters Container (Previously .product-filters-placeholder) */
+/*
 .product-filters-container {
     background-color: rgba(40, 40, 40, 0.75);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.12); /* Slightly more visible border */
+/*
     padding: 2.5rem; /* Increased padding */
+/*
     border-radius: 15px; /* Use var or consistent value like var(--border-radius-large, 15px) */
+/*
     margin-bottom: 3rem;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Refined shadow */
     /* text-align: center; /* Removed as form elements will align themselves */
+/*
 }
+*/
 
 /* Remove old placeholder p styling if it was too specific or add general one */
+/*
 .product-filters-container p { /* For the placeholder text if still used */
+/*
     margin: 0;
     color: var(--text-secondary);
     font-style: italic;
 }
+*/
 
 /* Filter Form Styling */
+/*
 #product-filters-form {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid columns */
+/*
     gap: 1.5rem 2rem; /* Row gap, Column gap */
+/*
     align-items: start; /* Changed from flex-end to prevent vertical shifts */
+/*
 }
 
 .filter-group {
     display: flex;
     flex-direction: column;
     gap: 0.4rem; /* Smaller gap for label & select */
+/*
 }
+*/
 
 /* Special styling for the tire size group container */
+/*
 .filter-group.tire-size-group {
     /* This group itself is a grid item in the main form */
     /* Optional: Add border/bg to visually group these further, if not done by sub-groups */
@@ -398,17 +484,22 @@
     /* border-radius: var(--border-radius-medium); */
     /* background-color: rgba(0,0,0,0.03); */
     /* The label "Dimensions du Pneu:" is part of this flex column */
+/*
 }
 
 .tire-size-group > label { /* Label for "Dimensions du Pneu" */
+/*
     font-weight: var(--font-weight-semibold); /* Make it more prominent */
+/*
     color: var(--text-light);
     margin-bottom: 0.5rem; /* Space before the row of inputs */
+/*
 }
 
 .tire-size-group .tire-size-inputs-row {
     display: flex;
     flex-wrap: nowrap; /* Try to keep them in a row */
+/*
     align-items: flex-end;
     gap: 0.75rem;
 }
@@ -416,11 +507,15 @@
 .tire-size-group .tire-size-inputs-row .filter-group {
      flex-grow: 1;
      min-width: 70px; /* Narrower for size components */
+/*
 }
+*/
 
 /* General Label and Select Styling within the form */
+/*
 #product-filters-form label {
     font-size: 0.85rem; /* Slightly smaller label */
+/*
     color: var(--text-secondary);
     margin-bottom: 0;
     font-weight: var(--font-weight-medium);
@@ -429,11 +524,14 @@
 
 #product-filters-form select {
     background-color: var(--bg-dark); /* Consistent dark background */
+/*
     color: var(--text-light);
     border: 1px solid var(--border-color);
     padding: 0.7rem 1rem; /* Increased padding for better touch targets */
+/*
     border-radius: var(--border-radius-small, 5px);
     font-size: 1rem; /* Standard font size for readability */
+/*
     min-width: 160px;
     appearance: none;
     -webkit-appearance: none;
@@ -441,78 +539,99 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23e0e0e0' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.8rem center; /* Adjusted position */
+/*
     background-size: 0.9em; /* Adjusted size */
+/*
     cursor: pointer;
 }
 #product-filters-form select:focus {
     outline: none;
     border-color: var(--accent-primary);
     box-shadow: 0 0 0 3px rgba(255, 221, 3, 0.3); /* Adjusted glow */
+/*
 }
 
 .filter-actions {
     grid-column: 1 / -1; /* Span full width */
+/*
     text-align: right;
     margin-top: 1rem;
 }
 
 #reset-filters-button.cta-button.secondary { /* Assuming .secondary modifies .cta-button */
+/*
     background-color: var(--bg-surface); /* Different bg for secondary */
+/*
     color: var(--text-light);
     border: 1px solid var(--border-color);
     padding: 0.7rem 1.5rem; /* Match select height */
+/*
     font-size: 1rem; /* Match select font size */
+/*
 }
 #reset-filters-button.cta-button.secondary:hover {
     background-color: var(--border-color); /* Darken on hover */
+/*
     color: var(--text-light);
 }
-
+*/
 
 /* Responsive for Filters */
+/*
 @media (max-width: 767px) { /* Tablet and smaller */
+/*
     #product-filters-form {
         gap: 1.25rem;
     }
     .filter-group.tire-size-group {
         /* If it needs to span full width on tablet before stacking internally */
         /* grid-column: 1 / -1; */
+/*
     }
     .tire-size-group .tire-size-inputs-row {
         flex-wrap: wrap; /* Allow select boxes to wrap if needed */
+/*
     }
     .tire-size-group .tire-size-inputs-row .filter-group {
         min-width: calc(33.333% - 0.75rem); /* Aim for 3 per row on tablet if space */
+/*
     }
 }
 
 @media (max-width: 576px) { /* Small mobile */
+/*
     .product-filters-container {
         padding: 1.5rem; /* Reduce padding on small screens */
+/*
     }
     #product-filters-form {
         grid-template-columns: 1fr; /* Stack all groups */
+/*
         gap: 1rem;
     }
     .filter-group.tire-size-group {
         padding: 0; /* Remove padding if any was added for grouping border */
+/*
         border: none;
         background: none;
     }
     .tire-size-group .tire-size-inputs-row {
         flex-direction: column;
         gap: 1rem; /* Increased gap for stacked selects */
+/*
         align-items: stretch;
     }
     .tire-size-group .tire-size-inputs-row .filter-group {
         min-width: 100%;
     }
     #product-filters-form select { /* Make all selects full width when stacked */
+/*
         min-width: 100%;
     }
     .filter-actions {
         text-align: center;
         margin-top: 0.5rem; /* Reduce top margin */
+/*
     }
     #reset-filters-button.cta-button.secondary {
         width: 100%;
@@ -520,6 +639,8 @@
         padding-bottom: 0.8rem;
     }
 }
+*/
+/* End of commented out section for specific product page filters */
 
 
 /* Optional: If product page title needs specific adjustments */
@@ -2492,4 +2613,194 @@ a:hover, a:focus { /* Added :focus for accessibility */
     background-color: rgba(50, 50, 50, 0.8);
     transform: translateY(-5px);
     box-shadow: 0 10px 22px rgba(0,0,0,0.3);
+}
+
+/* === New Product Filters CSS === */
+.product-filters-container {
+    background-color: rgba(40, 40, 40, 0.75); /* From existing style */
+    -webkit-backdrop-filter: blur(10px); /* From existing style */
+    backdrop-filter: blur(10px); /* From existing style */
+    border: 1px solid rgba(255, 255, 255, 0.12); /* From existing style */
+    padding: 2rem; /* Adjusted padding */
+    border-radius: 12px; /* Consistent border radius */
+    margin-bottom: 3rem; /* From existing style */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* From existing style */
+}
+
+#product-filters-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjusted minmax for potentially more columns */
+    gap: 1.5rem 1.25rem; /* row-gap column-gap */
+    align-items: start; /* Align items to the start of their grid area */
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Space between label and select/content */
+}
+
+#product-filters-form label { /* General label styling within the form */
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.1rem;
+    font-weight: var(--font-weight-medium);
+}
+
+#product-filters-form select,
+#product-filters-form input[type="text"], /* If any text inputs were to be added */
+#product-filters-form input[type="number"] { /* If any number inputs were to be added */
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem; /* Consistent padding */
+    border-radius: var(--border-radius-small, 5px);
+    font-size: 0.95rem;
+    width: 100%; /* Make selects take full width of their grid cell */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23e0e0e0' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 0.9em;
+    cursor: pointer;
+}
+
+#product-filters-form select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(255, 221, 3, 0.3);
+}
+
+.filter-group.tire-size-group {
+    /* This group might span multiple columns if its content is wider,
+       or we can force it to behave like other .filter-groups if preferred.
+       Let's make it a bit wider by default on larger screens. */
+    /* grid-column: span 2; /* Example: Make it take up two columns in the grid */ /* REMOVED */
+}
+
+.filter-group.tire-size-group > label { /* The main "Dimensions du Pneu:" label */
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-light);
+    /* margin-bottom is already handled by .filter-group gap or general label margin */
+}
+
+.tire-size-inputs-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns for width, ratio, diameter */
+    gap: 0.75rem; /* Gap between the select elements */
+    align-items: end; /* Align items to the bottom, useful if labels have different heights */
+}
+
+.tire-size-inputs-row .filter-group {
+    /* Sub-filter groups within the row. Reset any specific width/min-width if needed,
+       as they are now grid items within .tire-size-inputs-row. */
+    gap: 0.25rem; /* Smaller gap between sub-label and its select */
+}
+/* Selects inside tire-size-inputs-row will inherit general select styling, including width: 100% of their cell */
+
+.filter-group.features-filter-group {
+    /* This group can be a standard column or span if it has many options */
+    /* grid-column: span 1; /* Default, will take one column */
+    /* If it needs more space, e.g., grid-column: span 2; */
+}
+
+.features-filter-group .filter-group-title { /* Label "Caractéristiques:" */
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-light);
+    /* margin-bottom: 0.75rem; /* Already styled in existing CSS, ensure it's not overridden or remove if new gap handles it */
+}
+/* The .checkbox-option styles should be preserved from the original CSS.
+   Ensure they are not commented out or are re-added if they were. */
+
+.filter-actions {
+    grid-column: 1 / -1; /* Make the actions container span all columns of the form grid */
+    display: flex;
+    justify-content: flex-end; /* Align button to the right */
+    margin-top: 1rem; /* Space above the button */
+}
+
+#reset-filters-button.cta-button.secondary {
+    background-color: var(--bg-surface-accent, #3a3a3a);
+    color: var(--text-light);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem; /* Match select height */
+    font-size: 0.95rem;
+    text-shadow: none;
+}
+#reset-filters-button.cta-button.secondary:hover {
+    background-color: var(--border-color);
+    color: var(--text-light);
+    border-color: var(--accent-primary);
+}
+
+/* === Responsive Product Filters === */
+@media (max-width: 992px) {
+    #product-filters-form {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Allow slightly smaller base column size */
+        gap: 1.25rem 1rem; /* Adjust gaps */
+    }
+
+    /* REMOVED .filter-group.tire-size-group { grid-column: span 1; } as it's now default flow */
+
+    .tire-size-inputs-row {
+        /* If the 3 selects (width, ratio, diameter) become too cramped, stack them.
+           For now, let's assume they fit or wrap if auto-fit is used on their parent.
+           If explicit stacking is needed:
+           grid-template-columns: 1fr;
+        */
+    }
+}
+
+@media (max-width: 767px) {
+    .product-filters-container {
+        padding: 1.5rem; /* Reduce padding on small screens */
+    }
+
+    #product-filters-form {
+        grid-template-columns: 1fr; /* Stack all filter groups into a single column */
+        gap: 1rem; /* Adjust gap for stacked items */
+    }
+
+    .filter-group.tire-size-group {
+        grid-column: 1 / -1; /* Ensure it spans the single column */
+    }
+
+    .tire-size-inputs-row {
+        grid-template-columns: 1fr; /* Stack width, ratio, diameter selects */
+        gap: 1rem; /* Gap between stacked selects */
+    }
+
+    .filter-actions {
+        justify-content: center; /* Center the reset button */
+        margin-top: 0.5rem;
+    }
+
+    #reset-filters-button.cta-button.secondary {
+        width: 100%; /* Make reset button full width */
+        max-width: 320px; /* Optional: max-width for the button */
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-filters-container {
+        padding: 1rem;
+    }
+
+    #product-filters-form label {
+        font-size: 0.85rem;
+    }
+
+    #product-filters-form select,
+    #reset-filters-button.cta-button.secondary {
+        font-size: 0.9rem; /* Adjust font size of inputs and button */
+        padding: 0.7rem 0.9rem;
+    }
+     .tire-size-inputs-row {
+        gap: 0.75rem; /* Slightly smaller gap for very small screens */
+    }
 }
