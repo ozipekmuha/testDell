@@ -2826,6 +2826,15 @@ a:hover, a:focus { /* Added :focus for accessibility */
 @media (min-width: 992px) { /* Desktop */
     .product-detail-layout {
         gap: 3.5rem; /* Wider gap for desktop */
+        align-items: flex-start; /* Important for sticky positioning */
+    }
+
+    .product-detail-image-column {
+        position: -webkit-sticky; /* For Safari */
+        position: sticky;
+        top: 100px; /* Adjust this value as needed - consider header height + some padding */
+        max-height: calc(100vh - 120px); /* Example: top offset + some bottom space */
+        overflow-y: auto; /* If the content of the column itself needs to scroll */
     }
 }
 
